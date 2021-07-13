@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import Post from './Post/Post';
 import s from './MyPosts.module.css';
 import { PostsType } from '../../../redux/state';
@@ -6,26 +6,24 @@ import { PostsType } from '../../../redux/state';
 export type MyPostsType = {
   posts: Array<PostsType>;
   newPostText: string;
+  addPostCallBack: (postText: string) => void
+  onPostChange: (newText: string) => void
 };
 
 const MyPosts: React.FC<MyPostsType> = (props) => {
   const postsElements = props.posts.map((posts) => <Post message={posts.message} key={posts.id} />);
 
-  // const newPostElement = (e) => {
-  //   props.updateNewPostText(e.curre)
-  // };
 
-  // при вводе данных отправляет данные в state
-  // const onPostChange = () => {
-  //   if (newPostElement.current) {
-  //     let text = newPostElement.current.value;
-  //     props.updateNewPostText(text);
-  //   }
-  // };
 
-  const onAddPost = () => {
-    alert("dwd")
+  const addPost = () => {
+    props.addPostCallBack(props.newPostText)
   };
+
+
+  const onPostChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    props.onPostChange(e.currentTarget.value)
+  }
+
 
   return (
     <div className={s.posts}>
@@ -33,14 +31,15 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
       <div className={s.new_post}>
         <textarea
           className={s.new_post_textarea}
-          // onChange={onPostChange}
+          onChange={onPostChangeText}
           value={props.newPostText}
           placeholder="your news..."
         />
       </div>
       <div className={s.posts_btn}>
         <button className={s.btn_button}
-                onClick={onAddPost}>
+                onClick={addPost}
+                >
           Send
         </button>
       </div>

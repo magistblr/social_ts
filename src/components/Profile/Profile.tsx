@@ -10,6 +10,8 @@ export type ProfileType = {
   posts: PostsType[]
   newPostText: string
   profile: null
+  addPostCallBack: (postText: string) => void
+  onPostChange: (newText: string) => void
 }
 
 
@@ -17,7 +19,8 @@ const Profile: React.FC<ProfileType> = (props) => {
 
   let posts = props.posts
   let newPostText = props.newPostText
-
+  let addPostCallBack = props.addPostCallBack
+  let onPostChange = props.onPostChange
   return (
     <div className={s.wrapper}>
       <header className="content__header">
@@ -26,7 +29,7 @@ const Profile: React.FC<ProfileType> = (props) => {
 
       <div className={s.content}>
         <ProfileInfo profile={props.profile}/>
-        <MyPosts posts={posts} newPostText={newPostText}/>
+        <MyPosts posts={posts} newPostText={newPostText} addPostCallBack={addPostCallBack} onPostChange={onPostChange}/>
       </div>
     </div>
   );
