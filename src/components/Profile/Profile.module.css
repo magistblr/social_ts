@@ -1,0 +1,13 @@
+.wrapper {
+  display: block;
+}
+
+
+.content_img {
+  width: 100%;
+  height: 300px;
+}
+
+.content {
+  width: 80%;
+}

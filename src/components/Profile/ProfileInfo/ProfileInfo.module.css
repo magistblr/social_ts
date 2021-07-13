@@ -1,0 +1,20 @@
+.user {
+  display: flex;
+  margin-top: 15px;
+}
+
+.user_img {
+  width: 100px;
+  height: 100px;
+}
+
+.user_name {
+  margin-left: 40px;
+  font-size: 25px;
+}
+
+.user_description_list {
+  list-style-type: none;
+}
+
+

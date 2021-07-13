@@ -1,0 +1,19 @@
+
+.wrapper {
+  background-color: rgb(133, 158, 141);
+  padding: 10px;
+}
+
+.friends_label {
+  text-align: center;
+  margin-top: 200px;
+  font-size: 40px;
+}
+
+.friends_items {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 10px;
+}
+
