@@ -23,7 +23,7 @@ type AppType = {
   state: StateType
 }
 
-const App = (props: AppType) => {
+const App: React.FC<AppType> = (props) => {
 
 let friends = props.state.friendsBar.friends
 let navbar = props.state.sidebarPage.navbar

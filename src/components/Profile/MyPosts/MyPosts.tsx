@@ -17,6 +17,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
 
   const addPost = () => {
     props.addPostCallBack(props.newPostText)
+    props.onPostChange("")
   };
 
 

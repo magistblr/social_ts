@@ -1,4 +1,6 @@
-import { renderTree } from "../render"
+let render = () => {
+  console.log(("state changed"));
+}
 
 export type StateType = {
   profilePage: ProfilePageType
@@ -59,9 +61,7 @@ export type SidebarPageType = {
   navbar: Array<NavbarType>
 }
 
-
-
-let state: StateType =  {
+export let state: StateType =  {
 
     profilePage:  {
       posts:  [
@@ -115,18 +115,22 @@ export const addPost = (postText: string) => {
     message: postText
   }
   state.profilePage.posts.push(newPost)
-  renderTree(state);
+  render();
 }
 
 export const onPostChange = (newText: string) => {
   state.profilePage.newPostText = newText
-  renderTree(state)
+  console.log("render");
+  render()
 }
 
-
+export const subscriber = (renderTree: () => void) => {
+  render = renderTree;
+}
 
 //позволяет выводить state в консоли
-// window.store = store;
+//@ts-ignore
+window.state = state;
 
 export default state;
 
