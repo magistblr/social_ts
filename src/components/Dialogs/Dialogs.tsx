@@ -7,7 +7,7 @@ import s from './Dialogs.module.css'
 
 // import NewMessageContainer from './NewMessage/NewMessageContainer';
 // import { Redirect } from 'react-router-dom';
-import {DialogsType, FriendMessagesType, MessageType  } from '../../redux/state';
+import {DialogsType, FriendMessagesType, MessageType  } from '../../redux/store';
 import NewMessage from './NewMessage/NewMessage';
 
 

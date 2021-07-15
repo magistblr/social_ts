@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { state, subscriber } from './redux/state';
+import store from './redux/store';
+
 
 const renderTree = () => {
-    ReactDOM.render(
+  ReactDOM.render(
       <BrowserRouter>
-        <App state={state}/>
+        <App state={store.getState()} addPost={store.addPost.bind(store)} onPostChange={store.onPostChange.bind(store)}/>
       </BrowserRouter>,
     document.getElementById('root')
   );
@@ -16,4 +17,4 @@ const renderTree = () => {
 
 renderTree();
 
-subscriber(renderTree);
+store.subscriber(renderTree);

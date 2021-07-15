@@ -1,5 +1,12 @@
-let render = () => {
-  console.log(("state changed"));
+
+
+export type StoreType = {
+  _state: StateType
+  addPost: (postText: string) => void
+  onPostChange: (newText: string) => void
+  subscriber: (renderTree: () => void) => void
+  _render: () => void
+  getState: () => StateType
 }
 
 export type StateType = {
@@ -61,7 +68,10 @@ export type SidebarPageType = {
   navbar: Array<NavbarType>
 }
 
-export let state: StateType =  {
+
+
+let store: StoreType = {
+  _state:  {
 
     profilePage:  {
       posts:  [
@@ -107,32 +117,43 @@ export let state: StateType =  {
         {id: 3, name: 'Sveta'},
       ]
     },
-}
+  },
 
-export const addPost = (postText: string) => {
-  const newPost: PostsType = {
-    id: new Date().getTime(),
-    message: postText
+  _render() {
+    console.log(("state changed"))
+  },
+
+  getState() {
+    return (this._state);
+  },
+
+  addPost(postText: string) {
+    const newPost: PostsType = {
+      id: new Date().getTime(),
+      message: postText
+    }
+    this._state.profilePage.posts.push(newPost)
+    this._render();
+  },
+
+  onPostChange(newText: string) {
+    this._state.profilePage.newPostText = newText
+    console.log("render");
+    this._render()
+  },
+
+  subscriber(renderTree: () => void) {
+    this._render = renderTree;
   }
-  state.profilePage.posts.push(newPost)
-  render();
 }
 
-export const onPostChange = (newText: string) => {
-  state.profilePage.newPostText = newText
-  console.log("render");
-  render()
-}
 
-export const subscriber = (renderTree: () => void) => {
-  render = renderTree;
-}
 
 //позволяет выводить state в консоли
 //@ts-ignore
-window.state = state;
+window.store = store;
 
-export default state;
+export default store;
 
 
 
