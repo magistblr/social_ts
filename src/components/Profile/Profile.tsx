@@ -4,14 +4,13 @@ import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css'
 import MyPosts from './MyPosts/MyPosts';
-import { PostsType } from '../../redux/store';
+import { ActionType, PostsType } from '../../redux/store';
 
 export type ProfileType = {
   posts: PostsType[]
   newPostText: string
   profile: null
-  addPostCallBack: (postText: string) => void
-  onPostChange: (newText: string) => void
+  dispatch: (action: ActionType) => void
 }
 
 
@@ -19,8 +18,8 @@ const Profile: React.FC<ProfileType> = (props) => {
 
   let posts = props.posts
   let newPostText = props.newPostText
-  let addPostCallBack = props.addPostCallBack
-  let onPostChange = props.onPostChange
+  let dispatch = props.dispatch
+
   return (
     <div className={s.wrapper}>
       <header className="content__header">
@@ -29,7 +28,7 @@ const Profile: React.FC<ProfileType> = (props) => {
 
       <div className={s.content}>
         <ProfileInfo profile={props.profile}/>
-        <MyPosts posts={posts} newPostText={newPostText} addPostCallBack={addPostCallBack} onPostChange={onPostChange}/>
+        <MyPosts posts={posts} newPostText={newPostText} dispatch={dispatch}/>
       </div>
     </div>
   );

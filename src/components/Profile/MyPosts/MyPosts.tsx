@@ -1,28 +1,31 @@
 import React, { ChangeEvent } from 'react';
 import Post from './Post/Post';
 import s from './MyPosts.module.css';
-import { PostsType } from '../../../redux/store';
+import { ActionType, addPostActionCreator, onPostChangeTextActionCreator, PostsType } from '../../../redux/store';
 
 export type MyPostsType = {
   posts: Array<PostsType>;
   newPostText: string;
-  addPostCallBack: (postText: string) => void
-  onPostChange: (newText: string) => void
+  dispatch: (action: ActionType) => void
 };
+
+
 
 const MyPosts: React.FC<MyPostsType> = (props) => {
   const postsElements = props.posts.map((posts) => <Post message={posts.message} key={posts.id} />);
 
 
-
   const addPost = () => {
-    props.addPostCallBack(props.newPostText)
-    props.onPostChange("")
+    let text = props.newPostText
+    props.dispatch( addPostActionCreator(text))
+    props.dispatch( onPostChangeTextActionCreator("") )
   };
 
 
   const onPostChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.onPostChange(e.currentTarget.value)
+    let text = e.currentTarget.value
+    let action = onPostChangeTextActionCreator(text)
+    props.dispatch(action)
   }
 
 

@@ -1,12 +1,19 @@
+const ADD_POST = "ADD_POST";
+const ON_POST_CHANGE = "ON_POST_CHANGE";
+
 
 
 export type StoreType = {
   _state: StateType
-  addPost: (postText: string) => void
-  onPostChange: (newText: string) => void
   subscriber: (renderTree: () => void) => void
   _render: () => void
   getState: () => StateType
+  dispatch: (action: ActionType) => void
+}
+
+export type ActionType = {
+  type: string
+  newText: string
 }
 
 export type StateType = {
@@ -127,26 +134,30 @@ let store: StoreType = {
     return (this._state);
   },
 
-  addPost(postText: string) {
-    const newPost: PostsType = {
-      id: new Date().getTime(),
-      message: postText
-    }
-    this._state.profilePage.posts.push(newPost)
-    this._render();
-  },
-
-  onPostChange(newText: string) {
-    this._state.profilePage.newPostText = newText
-    console.log("render");
-    this._render()
-  },
-
   subscriber(renderTree: () => void) {
     this._render = renderTree;
-  }
+  },
+
+
+  dispatch(action: ActionType) {
+    if (action.type === 'ADD-POST') {
+      const newPost: PostsType = {
+        id: new Date().getTime(),
+        message: action.newText
+      }
+      this._state.profilePage.posts.push(newPost)
+      this._render();
+    } else if (action.type === 'ON-POST-CHANGE') {
+      this._state.profilePage.newPostText = action.newText
+      this._render()
+    }
+  },
+
 }
 
+export const addPostActionCreator = (text: string) => ({type: ADD_POST, newText: text})
+
+export const onPostChangeTextActionCreator  = (text: string) => ({type: ON_POST_CHANGE, newText: text})
 
 
 //позволяет выводить state в консоли

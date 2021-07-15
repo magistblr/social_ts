@@ -15,14 +15,13 @@ import Dialogs from './components/Dialogs/Dialogs';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
-import { StateType } from './redux/store';
+import { ActionType, StateType } from './redux/store';
 // import Login from './components/Login/Login';
 
 
 type AppType = {
   state: StateType
-  onPostChange: (newText: string) => void
-  addPost: (postText: string) => void
+  dispatch: (action: ActionType) => void
 }
 
 const App: React.FC<AppType> = (props) => {
@@ -37,8 +36,7 @@ let newMessageBody = props.state.dialogsPage.newMessageBody
 let posts = props.state.profilePage.posts
 let profile = props.state.profilePage.profile
 let newPostText = props.state.profilePage.newPostText
-let addPostCallBack = props.addPost
-let onPostChange = props.onPostChange
+let dispatch = props.dispatch
 
   return (
       <div className="app-wrapper">
@@ -46,7 +44,7 @@ let onPostChange = props.onPostChange
           <Header/>
           <Sidebar friends={friends} navbar={navbar}/>
           <div className="content-wrapper">
-            <Route path="/profile/:userId?" render={ () => <Profile profile={profile} posts={posts} newPostText={newPostText} addPostCallBack={addPostCallBack} onPostChange={onPostChange}/>}/>
+            <Route path="/profile/:userId?" render={ () => <Profile profile={profile} posts={posts} newPostText={newPostText} dispatch={dispatch}/>}/>
             <Route path="/messages" render={ () => <Dialogs dialogs={dialogs} messages={messages} friendMessages={friendMessages} newMessageBody={newMessageBody}/>}/>
             {/* <Route path="/users" render={ () => <Users users={props.}/>}/> */}
             <Route path="/news" render={ () => <News/>}/>
