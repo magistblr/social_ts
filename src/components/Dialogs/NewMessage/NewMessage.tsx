@@ -1,22 +1,30 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
+import { sendMessageCreator, updateMessageCreator } from '../../../redux/dialogsReducer';
+import { ActionTypes } from '../../../redux/redux-store';
 import s from './NewMessage.module.css'
 
 export type NewMessageType = {
   newMessageBody: string
+  dispatch: (action: ActionTypes) => void
 }
 
 
 const NewMessage: React.FC<NewMessageType> = (props) => {
   let newMessageBody = props.newMessageBody;
 
-  // let onSendMessageClick = () => {
-  //   props.sendMessage();
-  // }
+  const onSendMessageClick = () => {
+    let text = props.newMessageBody
+    props.dispatch( sendMessageCreator(text))
+    props.dispatch( updateMessageCreator("") )
+  };
 
-  // let onNewMessageChange = (e: any) => {
-  //   let body = e.target.value;
-  //   props.updateNewMessageBody(body);
-  // }
+
+  const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let text = e.currentTarget.value
+    let action = updateMessageCreator(text)
+    props.dispatch(action)
+  }
+
 
 
   return (
@@ -24,12 +32,12 @@ const NewMessage: React.FC<NewMessageType> = (props) => {
             <div className={s.new_message}>
               <textarea className={`${s.new_message} textarea`}
               value={newMessageBody}
-              name="text"
+              onChange={onNewMessageChange}
               placeholder="Enter your next"
-              wrap="soft"/>
+              />
             </div>
             <div className={s.new_message_btn}>
-              <button className={`${s.new_message_btn} button`}>Send</button>
+              <button onClick={onSendMessageClick} className={`${s.new_message_btn} button`}>Send</button>
             </div>
           </div>
   )

@@ -4,7 +4,7 @@ import s from './Navbar.module.css'
 import {NavLink} from 'react-router-dom';
 
 export type NavbarType = {
-  id?: number
+  id?: string
   url: string
   name: string
 }

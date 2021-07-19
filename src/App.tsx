@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-
 import './App.css';
 
 import News from './components/News/News';
@@ -15,13 +14,13 @@ import Dialogs from './components/Dialogs/Dialogs';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
-import { ActionType, StateType } from './redux/store';
+import { ActionTypes, StateType } from './redux/redux-store';
 // import Login from './components/Login/Login';
 
 
 type AppType = {
   state: StateType
-  dispatch: (action: ActionType) => void
+  dispatch: (action: ActionTypes) => void
 }
 
 const App: React.FC<AppType> = (props) => {
@@ -45,7 +44,7 @@ let dispatch = props.dispatch
           <Sidebar friends={friends} navbar={navbar}/>
           <div className="content-wrapper">
             <Route path="/profile/:userId?" render={ () => <Profile profile={profile} posts={posts} newPostText={newPostText} dispatch={dispatch}/>}/>
-            <Route path="/messages" render={ () => <Dialogs dialogs={dialogs} messages={messages} friendMessages={friendMessages} newMessageBody={newMessageBody}/>}/>
+            <Route path="/messages" render={ () => <Dialogs dialogs={dialogs} messages={messages} friendMessages={friendMessages} newMessageBody={newMessageBody} dispatch={dispatch}/>}/>
             {/* <Route path="/users" render={ () => <Users users={props.}/>}/> */}
             <Route path="/news" render={ () => <News/>}/>
             <Route path="/music" render={ () => <Music/>}/>

@@ -1,12 +1,13 @@
 import React, { ChangeEvent } from 'react';
 import Post from './Post/Post';
 import s from './MyPosts.module.css';
-import { ActionType, addPostActionCreator, onPostChangeTextActionCreator, PostsType } from '../../../redux/store';
+import { addPostActionCreator, onPostChangeTextActionCreator } from '../../../redux/profileReducer';
+import { ActionTypes, PostsType } from '../../../redux/redux-store';
 
 export type MyPostsType = {
   posts: Array<PostsType>;
   newPostText: string;
-  dispatch: (action: ActionType) => void
+  dispatch: (action: ActionTypes) => void
 };
 
 
@@ -26,6 +27,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
     let text = e.currentTarget.value
     let action = onPostChangeTextActionCreator(text)
     props.dispatch(action)
+    console.log("render");
   }
 
 

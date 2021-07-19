@@ -4,13 +4,13 @@ import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css'
 import MyPosts from './MyPosts/MyPosts';
-import { ActionType, PostsType } from '../../redux/store';
+import { ActionTypes, PostsType } from '../../redux/redux-store';
 
 export type ProfileType = {
   posts: PostsType[]
   newPostText: string
   profile: null
-  dispatch: (action: ActionType) => void
+  dispatch: (action: ActionTypes) => void
 }
 
 

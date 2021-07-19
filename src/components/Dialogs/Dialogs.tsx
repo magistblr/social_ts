@@ -7,7 +7,7 @@ import s from './Dialogs.module.css'
 
 // import NewMessageContainer from './NewMessage/NewMessageContainer';
 // import { Redirect } from 'react-router-dom';
-import {DialogsType, FriendMessagesType, MessageType  } from '../../redux/store';
+import {DialogsType, FriendMessagesType, MessageType, ActionTypes } from '../../redux/redux-store';
 import NewMessage from './NewMessage/NewMessage';
 
 
@@ -16,6 +16,7 @@ export type DialogsSetType = {
   messages: MessageType[]
   friendMessages: FriendMessagesType[]
   newMessageBody: string
+  dispatch: (action: ActionTypes) => void
 }
 
 
@@ -43,7 +44,7 @@ const Dialogs: React.FC<DialogsSetType> = (props) => {
       <div>
         {friendMessagesElements}
         {messagesElements}
-        <NewMessage newMessageBody={newMessageBody} />
+        <NewMessage newMessageBody={newMessageBody} dispatch={props.dispatch}/>
       </div>
     </div>
   )

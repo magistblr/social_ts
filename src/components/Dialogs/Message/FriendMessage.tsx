@@ -4,7 +4,7 @@ import s from './FriendMessage.module.css'
 
 
 export type FriendMessageType = {
-  id: number
+  id: string
   message: string
 }
 
