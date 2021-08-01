@@ -7,31 +7,28 @@ import s from './Dialogs.module.css'
 
 // import NewMessageContainer from './NewMessage/NewMessageContainer';
 // import { Redirect } from 'react-router-dom';
-import {DialogsType, FriendMessagesType, MessageType, ActionTypes } from '../../redux/redux-store';
-import NewMessage from './NewMessage/NewMessage';
+import {ActionTypes, StateType } from '../../redux/redux-store';
+import {NewMessageContainer} from './NewMessage/NewMessageContainer';
 
 
 export type DialogsSetType = {
-  dialogs: DialogsType[]
-  messages: MessageType[]
-  friendMessages: FriendMessagesType[]
-  newMessageBody: string
+  state: StateType
   dispatch: (action: ActionTypes) => void
 }
 
 
 
 
-const Dialogs: React.FC<DialogsSetType> = (props) => {
+export const Dialogs: React.FC<DialogsSetType> = (props) => {
 
-  let newMessageBody = props.newMessageBody
+  let newMessageBody = props.state.dialogsPage.newMessageBody
 
 
-  let dialogsElements = props.dialogs.map( d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
+  let dialogsElements = props.state.dialogsPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
 
-  let messagesElements = props.messages.map( m => <Message message={m.message} id={m.id} key={m.id}/>);
+  let messagesElements = props.state.dialogsPage.messages.map( m => <Message message={m.message} id={m.id} key={m.id}/>);
 
-  let friendMessagesElements = props.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
+  let friendMessagesElements = props.state.dialogsPage.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
 
   // if (!props.isAuth) return <Redirect to={"/login"} />
 
@@ -44,10 +41,9 @@ const Dialogs: React.FC<DialogsSetType> = (props) => {
       <div>
         {friendMessagesElements}
         {messagesElements}
-        <NewMessage newMessageBody={newMessageBody} dispatch={props.dispatch}/>
+        <NewMessageContainer newMessageBody={newMessageBody} dispatch={props.dispatch}/>
       </div>
     </div>
   )
 }
 
-export default Dialogs;

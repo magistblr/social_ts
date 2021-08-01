@@ -1,13 +1,13 @@
 import React, { ChangeEvent } from 'react';
 import Post from './Post/Post';
 import s from './MyPosts.module.css';
-import { addPostActionCreator, onPostChangeTextActionCreator } from '../../../redux/profileReducer';
-import { ActionTypes, PostsType } from '../../../redux/redux-store';
+import { PostsType } from '../../../redux/redux-store';
 
-export type MyPostsType = {
+type MyPostsType = {
   posts: Array<PostsType>;
   newPostText: string;
-  dispatch: (action: ActionTypes) => void
+  updateNewPostText: (text: string) => void
+  addPost: (text: string) => void
 };
 
 
@@ -16,17 +16,15 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
   const postsElements = props.posts.map((posts) => <Post message={posts.message} key={posts.id} />);
 
 
-  const addPost = () => {
+  const onAddPost = () => {
     let text = props.newPostText
-    props.dispatch( addPostActionCreator(text))
-    props.dispatch( onPostChangeTextActionCreator("") )
+    props.addPost(text)
   };
 
 
   const onPostChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value
-    let action = onPostChangeTextActionCreator(text)
-    props.dispatch(action)
+    props.updateNewPostText(text)
     console.log("render");
   }
 
@@ -44,7 +42,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
       </div>
       <div className={s.posts_btn}>
         <button className={s.btn_button}
-                onClick={addPost}
+                onClick={onAddPost}
                 >
           Send
         </button>
