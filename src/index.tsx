@@ -3,26 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import store, { StateType } from './redux/redux-store';
+import {store, StateType }  from './redux/redux-store';
+import { Provider } from 'react-redux';
 
 //функция renderTree запускается каждый раз, как мы изменяем стейт
-const renderTree = (state: StateType) => {
+const renderTree = () => {
   ReactDOM.render(
-      <BrowserRouter>
-        <App state={state} dispatch={store.dispatch.bind(store)}/>
-      </BrowserRouter>,
+    <BrowserRouter>
+      <Provider store={store}>
+          <App />
+      </Provider>
+    </BrowserRouter>,
     document.getElementById('root')
   );
 }
 
 
 //отрисовывем приложение прокидывая стейт
-renderTree(store.getState());
+renderTree();
 
 
 //уведомляем редакс об изменении
 store.subscribe(() => {
-  let state = store.getState()
-  renderTree(state)
+  renderTree()
 });
 

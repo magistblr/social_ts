@@ -1,11 +1,10 @@
 
 import React from 'react';
-import Message from "./Message/Message";
+import Message, { MessageType } from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import FriendMessage from "./Message/FriendMessage";
+import FriendMessage, { FriendMessageType } from "./Message/FriendMessage";
 import s from './Dialogs.module.css'
 
-// import NewMessageContainer from './NewMessage/NewMessageContainer';
 // import { Redirect } from 'react-router-dom';
 import {ActionTypes, StateType } from '../../redux/redux-store';
 import {NewMessageContainer} from './NewMessage/NewMessageContainer';
@@ -41,7 +40,7 @@ export const Dialogs: React.FC<DialogsSetType> = (props) => {
       <div>
         {friendMessagesElements}
         {messagesElements}
-        <NewMessageContainer newMessageBody={newMessageBody} dispatch={props.dispatch}/>
+        <NewMessageContainer onNewMessageCallback={} onSendMessageCallback={} newMessageBody={newMessageBody} dispatch={props.dispatch}/>
       </div>
     </div>
   )

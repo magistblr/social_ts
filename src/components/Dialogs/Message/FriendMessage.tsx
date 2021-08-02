@@ -9,6 +9,7 @@ export type FriendMessageType = {
 }
 
 
+
 const FriendMessage: React.FC<FriendMessageType> = (props) => {
 
 

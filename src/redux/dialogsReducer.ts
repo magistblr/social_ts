@@ -1,5 +1,22 @@
-import { DialogsActionTypes, DialogsPageType, MessageType } from './redux-store';
 import { v1 } from 'uuid';
+import { FriendMessageType } from '../components/Dialogs/Message/FriendMessage';
+import { MessageType } from '../components/Dialogs/Message/Message';
+
+
+export type DialogsPageType = {
+  dialogs: Array<DialogsType>
+  messages: Array<MessageType>
+  friendMessages: Array<FriendMessageType>
+  newMessageBody: string
+}
+
+export type DialogsType = {
+  id: string
+  name: string
+}
+
+
+export type DialogsActionTypes = ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateMessageCreator>
 
 
 const NEW_MESSAGE = "NEW_MESSAGE";
@@ -24,7 +41,7 @@ let initialState: DialogsPageType = {
 }
 
 
-const dialogsReducer = (state = initialState, action: DialogsActionTypes) => {
+const dialogsReducer = (state = initialState, action: DialogsActionTypes): DialogsPageType => {
     switch (action.type) {
       case NEW_MESSAGE:
         state.newMessageBody = action.newText

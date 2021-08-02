@@ -1,34 +1,39 @@
 import React from 'react'
-import { sendMessageCreator, updateMessageCreator } from '../../../redux/dialogsReducer';
-import { ActionTypes } from '../../../redux/redux-store';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { DialogsPageType, sendMessageCreator, updateMessageCreator } from '../../../redux/dialogsReducer';
+import { StateType } from '../../../redux/redux-store';
 import NewMessage from './NewMessage';
 
-export type NewMessageType = {
-  newMessageBody: string
-  dispatch: (action: ActionTypes) => void
+
+
+
+type MapStateToPropsType = {
+  dialogsPage: DialogsPageType
 }
 
+type MapDispatchToProps = {
+  onSendMessageClick: (body: string) => void
+  onNewMessageChange: (body: string) => void
+}
 
-export const NewMessageContainer: React.FC<NewMessageType> = (props) => {
-
-  const onSendMessageClick = (body: string) => {
-    props.dispatch( sendMessageCreator(body))
-    props.dispatch( updateMessageCreator("") )
-  };
-
-
-  const onNewMessageChange = (body: string) => {
-    let action = updateMessageCreator(body)
-    props.dispatch(action)
+let mapStateToProps = (state: StateType): MapStateToPropsType => {
+  return {
+    dialogsPage: state.dialogsPage
   }
-
-
-  return (
-    <NewMessage newMessageBody={props.newMessageBody}
-                onSendMessageCallback={onSendMessageClick}
-                onNewMessageCallback={onNewMessageChange}
-                dispatch={props.dispatch}/>
-  )
 }
 
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
+  return {
+    onSendMessageClick: (body: string) => {
+      dispatch( sendMessageCreator(body))
+      dispatch( updateMessageCreator("") )
+    },
+    onNewMessageChange: (body: string) => {
+      dispatch(updateMessageCreator(body))
+    }
+  }
+}
+
+export const NewMessageContainer = connect(mapStateToProps, mapDispatchToProps)(NewMessage)
 

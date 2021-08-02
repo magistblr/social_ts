@@ -18,8 +18,7 @@ import { ActionTypes, StateType} from './redux/redux-store';
 // import Login from './components/Login/Login';
 
 type AppType = {
-  state: StateType;
-  dispatch: (action: ActionTypes) => void;
+  store: store
 };
 
 const App: React.FC<AppType> = (props) => {

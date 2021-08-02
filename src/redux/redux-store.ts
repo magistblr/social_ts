@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from "redux";
-import dialogsReducer, { sendMessageCreator, updateMessageCreator } from './dialogsReducer';
+import dialogsReducer, { DialogsActionTypes, sendMessageCreator, updateMessageCreator } from './dialogsReducer';
 import profileReducer, { addPostActionCreator, onPostChangeTextActionCreator } from './profileReducer';
 import sidebarReducer from './sidebarReducer';
 import friendsReducer from './friendsReducer';
@@ -10,16 +10,9 @@ export type StoreType = {
 }
 
 export type ProfileActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof onPostChangeTextActionCreator>
-export type DialogsActionTypes = ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateMessageCreator>
 
 export type ActionTypes =  ProfileActionTypes | DialogsActionTypes
 
-export type StateType = {
-  profilePage: ProfilePageType
-  dialogsPage: DialogsPageType
-  sidebarPage: SidebarPageType
-  friendsBar:  FriendsBarType
-}
 
 export type ProfilePageType = {
   posts: Array<PostsType>
@@ -32,22 +25,6 @@ export type PostsType = {
   message: string
 }
 
-export type DialogsPageType = {
-  dialogs: Array<DialogsType>
-  messages: Array<MessageType>
-  friendMessages: Array<FriendMessagesType>
-  newMessageBody: string
-}
-
-export type DialogsType = {
-  id: string
-  name: string
-}
-
-export type MessageType = {
-  id: string
-  message: string
-}
 
 export type NavbarType = {
   id: string
@@ -55,10 +32,6 @@ export type NavbarType = {
   url: string
 }
 
-export type FriendMessagesType = {
-  id: string
-  message: string
-}
 
 export type FriendsType = {
   id: string
@@ -73,18 +46,17 @@ export type SidebarPageType = {
   navbar: Array<NavbarType>
 }
 
+export type StateType = ReturnType<typeof rootReducer>
 
 
-let reducers = combineReducers({
+export const rootReducer = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   sidebarPage: sidebarReducer,
   friendsBar: friendsReducer,
 });
 
-let store = createStore(reducers);
+export const store = createStore(rootReducer);
 
 //@ts-ignore
 window.store = store;
-
-export default store;
