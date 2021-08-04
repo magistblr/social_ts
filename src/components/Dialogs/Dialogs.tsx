@@ -6,12 +6,12 @@ import FriendMessage, { FriendMessageType } from "./Message/FriendMessage";
 import s from './Dialogs.module.css'
 
 // import { Redirect } from 'react-router-dom';
-import {ActionTypes, StateType } from '../../redux/redux-store';
+import {ActionTypes, StoreType } from '../../redux/redux-store';
 import {NewMessageContainer} from './NewMessage/NewMessageContainer';
 
 
 export type DialogsSetType = {
-  state: StateType
+  state: StoreType
   dispatch: (action: ActionTypes) => void
 }
 

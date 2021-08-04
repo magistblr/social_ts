@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import {store, StateType }  from './redux/redux-store';
+import {store}  from './redux/redux-store';
 import { Provider } from 'react-redux';
 
 //функция renderTree запускается каждый раз, как мы изменяем стейт
@@ -28,3 +28,7 @@ store.subscribe(() => {
   renderTree()
 });
 
+
+
+//нужно поправить store, не получается перекинуть его через connect
+//с типизацией диалогс какаято хрень, не передаются пропсы в ньмессадже

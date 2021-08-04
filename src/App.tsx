@@ -14,18 +14,17 @@ import {Dialogs} from './components/Dialogs/Dialogs';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
-import { ActionTypes, StateType} from './redux/redux-store';
+import { StoreType} from './redux/redux-store';
 // import Login from './components/Login/Login';
 
-type AppType = {
-  store: store
-};
 
-const App: React.FC<AppType> = (props) => {
-  let friends = props.state.friendsBar.friends;
-  let navbar = props.state.sidebarPage.navbar;
 
-  let state = props.state;
+
+const App: React.FC<StoreType> = (props) => {
+  let friends = props.friendsBar.friends
+  let navbar = props.sidebarPage.navbar;
+
+  let state = props.getState();
   let dispatch = props.dispatch;
 
   return (

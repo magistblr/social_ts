@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { DialogsPageType, sendMessageCreator, updateMessageCreator } from '../../../redux/dialogsReducer';
-import { StateType } from '../../../redux/redux-store';
+import { StoreType } from '../../../redux/redux-store';
 import NewMessage from './NewMessage';
 
 
@@ -17,7 +17,7 @@ type MapDispatchToProps = {
   onNewMessageChange: (body: string) => void
 }
 
-let mapStateToProps = (state: StateType): MapStateToPropsType => {
+let mapStateToProps = (state: StoreType): MapStateToPropsType => {
   return {
     dialogsPage: state.dialogsPage
   }

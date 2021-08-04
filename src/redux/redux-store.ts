@@ -1,13 +1,9 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, Store } from "redux";
 import dialogsReducer, { DialogsActionTypes, sendMessageCreator, updateMessageCreator } from './dialogsReducer';
 import profileReducer, { addPostActionCreator, onPostChangeTextActionCreator } from './profileReducer';
 import sidebarReducer from './sidebarReducer';
 import friendsReducer from './friendsReducer';
 
-export type StoreType = {
-  state: StateType
-  dispatch: (action: ActionTypes) => void
-}
 
 export type ProfileActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof onPostChangeTextActionCreator>
 
@@ -46,7 +42,7 @@ export type SidebarPageType = {
   navbar: Array<NavbarType>
 }
 
-export type StateType = ReturnType<typeof rootReducer>
+export type StoreType = Store & ReturnType<typeof rootReducer>
 
 
 export const rootReducer = combineReducers({
