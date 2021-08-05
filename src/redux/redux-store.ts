@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from "redux";
-import dialogsReducer, { DialogsActionTypes, sendMessageCreator, updateMessageCreator } from './dialogsReducer';
+import dialogsReducer, { DialogsActionTypes } from './dialogsReducer';
 import profileReducer, { addPostActionCreator, onPostChangeTextActionCreator } from './profileReducer';
 import sidebarReducer from './sidebarReducer';
 import friendsReducer from './friendsReducer';

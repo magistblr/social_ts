@@ -2,30 +2,24 @@ import React, { ChangeEvent } from 'react';
 import Post from './Post/Post';
 import s from './MyPosts.module.css';
 import { PostsType } from '../../../redux/redux-store';
-
-type MyPostsType = {
-  posts: Array<PostsType>;
-  newPostText: string;
-  updateNewPostText: (text: string) => void
-  addPost: (text: string) => void
-};
+import { MyPostsPropsType } from './MyPostsContainer';
 
 
 
-const MyPosts: React.FC<MyPostsType> = (props) => {
-  const postsElements = props.posts.map((posts) => <Post message={posts.message} key={posts.id} />);
 
+const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+  const postsElements = props.profilePage.posts.map((posts) => <Post message={posts.message} key={posts.id} />);
+
+  let text = props.profilePage.newPostText
 
   const onAddPost = () => {
-    let text = props.newPostText
     props.addPost(text)
   };
 
 
   const onPostChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value
-    props.updateNewPostText(text)
-    console.log("render");
+    props.onPostChangeText(text)
   }
 
 
@@ -36,7 +30,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
         <textarea
           className={s.new_post_textarea}
           onChange={onPostChangeText}
-          value={props.newPostText}
+          value={text}
           placeholder="your news..."
         />
       </div>

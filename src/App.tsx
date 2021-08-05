@@ -10,23 +10,22 @@ import Settings from './components/Settings/Settings';
 // import UsersContainer from './components/Users/UsersContainer';
 // import ProfileContainer from './components/Profile/ProfileContainer';
 // import HeaderContainer from './components/Header/HeaderContainer';
-import {Dialogs} from './components/Dialogs/Dialogs';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
-import { ActionTypes, StateType} from './redux/redux-store';
+import { StateType } from './redux/redux-store';
+import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 // import Login from './components/Login/Login';
 
 type AppType = {
-  store: store
+  state: StateType
 };
 
-const App: React.FC<AppType> = (props) => {
-  let friends = props.state.friendsBar.friends;
-  let navbar = props.state.sidebarPage.navbar;
+const App: React.FC<AppType> = ({state}) => {
 
-  let state = props.state;
-  let dispatch = props.dispatch;
+  let friends = state.friendsBar.friends
+  let navbar = state.sidebarPage.navbar;
+
 
   return (
     <div className="app-wrapper">
@@ -36,9 +35,9 @@ const App: React.FC<AppType> = (props) => {
         <div className="content-wrapper">
           <Route
             path="/profile/:userId?"
-            render={() => <Profile state={state} dispatch={dispatch} />}
+            render={() => <Profile state={state} />}
           />
-          <Route path="/messages" render={ () => <Dialogs state={state} dispatch={dispatch}/>}/>
+          <Route path="/messages" render={ () => <DialogsContainer state={state}/>}/>
           {/* <Route path="/users" render={ () => <Users users={props.}/>}/> */}
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />

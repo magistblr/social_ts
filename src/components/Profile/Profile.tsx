@@ -2,18 +2,15 @@ import React from 'react';
 
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import s from './Profile.module.css';
-import {MyPostsContainer} from './MyPosts/MyPostsContainer';
-import { ActionTypes, StateType } from '../../redux/redux-store';
+import { MyPostsContainer } from '../Profile/MyPosts/MyPostsContainer';
+import { StateType } from '../../redux/redux-store';
 
 export type ProfileType = {
   state: StateType;
-  dispatch: (action: ActionTypes) => void;
 };
 
 const Profile: React.FC<ProfileType> = (props) => {
   const profile = props.state.profilePage.profile;
-  const state = props.state;
-  const dispatch = props.dispatch;
 
 
   return (
@@ -29,7 +26,7 @@ const Profile: React.FC<ProfileType> = (props) => {
       <div className={s.content}>
         <ProfileInfo profile={profile} />
 
-        <MyPostsContainer state={state}  dispatch={dispatch} />
+        <MyPostsContainer/>
       </div>
     </div>
   );

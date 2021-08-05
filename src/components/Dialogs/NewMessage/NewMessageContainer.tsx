@@ -6,9 +6,7 @@ import { StateType } from '../../../redux/redux-store';
 import NewMessage from './NewMessage';
 
 
-
-
-type MapStateToPropsType = {
+type MapStatePropsType = {
   dialogsPage: DialogsPageType
 }
 
@@ -17,13 +15,17 @@ type MapDispatchToProps = {
   onNewMessageChange: (body: string) => void
 }
 
-let mapStateToProps = (state: StateType): MapStateToPropsType => {
+export type NewMessagePropsType = MapStatePropsType & MapDispatchToProps
+
+
+
+const mapStateToProps = (state: StateType): MapStatePropsType => {
   return {
     dialogsPage: state.dialogsPage
   }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
   return {
     onSendMessageClick: (body: string) => {
       dispatch( sendMessageCreator(body))

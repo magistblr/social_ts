@@ -6,28 +6,26 @@ import FriendMessage, { FriendMessageType } from "./Message/FriendMessage";
 import s from './Dialogs.module.css'
 
 // import { Redirect } from 'react-router-dom';
-import {ActionTypes, StateType } from '../../redux/redux-store';
-import {NewMessageContainer} from './NewMessage/NewMessageContainer';
+import {StateType } from '../../redux/redux-store';
+import { NewMessageContainer } from './NewMessage/NewMessageContainer';
 
 
 export type DialogsSetType = {
   state: StateType
-  dispatch: (action: ActionTypes) => void
 }
 
 
 
 
-export const Dialogs: React.FC<DialogsSetType> = (props) => {
-
-  let newMessageBody = props.state.dialogsPage.newMessageBody
+export const Dialogs: React.FC<DialogsSetType> = ({state}) => {
 
 
-  let dialogsElements = props.state.dialogsPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
 
-  let messagesElements = props.state.dialogsPage.messages.map( m => <Message message={m.message} id={m.id} key={m.id}/>);
+  let dialogsElements = state.dialogsPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
 
-  let friendMessagesElements = props.state.dialogsPage.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
+  let messagesElements = state.dialogsPage.messages.map( m => <Message message={m.message} id={m.id} key={m.id}/>);
+
+  let friendMessagesElements = state.dialogsPage.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
 
   // if (!props.isAuth) return <Redirect to={"/login"} />
 
@@ -40,7 +38,7 @@ export const Dialogs: React.FC<DialogsSetType> = (props) => {
       <div>
         {friendMessagesElements}
         {messagesElements}
-        <NewMessageContainer onNewMessageCallback={} onSendMessageCallback={} newMessageBody={newMessageBody} dispatch={props.dispatch}/>
+        <NewMessageContainer/>
       </div>
     </div>
   )
