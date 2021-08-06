@@ -5,9 +5,8 @@ import './App.css';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-// import DialogsContainer from './components/Dialogs/DialogsContainer';
 // import SidebarContainer from './components/Sidebar/SidebarContainer';
-// import UsersContainer from './components/Users/UsersContainer';
+import UsersContainer from './components/Users/UsersContainer';
 // import ProfileContainer from './components/Profile/ProfileContainer';
 // import HeaderContainer from './components/Header/HeaderContainer';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -37,8 +36,8 @@ const App: React.FC<AppType> = ({state}) => {
             path="/profile/:userId?"
             render={() => <Profile state={state} />}
           />
-          <Route path="/messages" render={ () => <DialogsContainer state={state}/>}/>
-          {/* <Route path="/users" render={ () => <Users users={props.}/>}/> */}
+          <Route path="/messages" render={ () => <DialogsContainer/>}/>
+          <Route path="/users" render={ () => <UsersContainer state={state}/>}/>
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/settings" render={() => <Settings />} />

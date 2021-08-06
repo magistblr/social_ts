@@ -1,34 +1,46 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import userPhoto from '../../assets/img/users.png'
+import { StateType } from '../../redux/redux-store';
+import { UserType } from '../../redux/usersReducer';
 import s from './Users.module.css'
 
 export type UsersType = {
-  users: any
+  totalUsersCount: number
+  pageSize: number
+  currentPage: number
+  onPageChanged: (pageNumber: number) => void
+  users: UserType[]
+  follow: (userId: number) => void
+  unfollow: (userId: number) => void
+  followingInProgress: number[]
 }
 
-let Users: React.FC<UsersType> = (props) => {
+export const Users: React.FC<UsersType> = (props) => {
   // let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize); допилить вывод пользователей через кнопку ещё (сейчас ограничение страниц 25)
   let pages = [];
   for (let i=1; i <= 25; i++) {
     pages.push(i);
   }
+
+
+
   return ( <div>
 
-    {/* <div className="users__pagination">
+    <div className="users__pagination">
       {pages.map( p => {
-        return <div className="users__pagination-wrapper" onClick={(e) => {props.onPageChanged(p)}}>
-                    <span  className={props.currentPage === p && "users__pagination-item_selected"}
+        return <div className="users__pagination-wrapper" onClick={() => {props.onPageChanged(p)}}>
+                    <span  className={props.currentPage === p ? "users__pagination-item_selected" : ""}
                       >{p}</span>
               </div>
       })}
 
-      </div> */}
+      </div>
         {props.users.map( (u: any) => <div key={u.id}>
         <div className={s.wrapper}>
           <div className={s.logo}>
           <NavLink to={'/profile/' + u.id}> <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" /> </NavLink>
-            {/* <div className="users__btn">
+            <div className="users__btn">
               {u.followed
                 ? <button disabled={props.followingInProgress.some(id => id === u.id)}
                           onClick={() => {props.unfollow(u.id)}}>
@@ -38,7 +50,7 @@ let Users: React.FC<UsersType> = (props) => {
                             onClick={() => {props.follow(u.id)}}>
                     Follow</button>
               }
-            </div> */}
+            </div>
           </div>
           <div className={s.descr_wrapper_outer}>
             <div className={s.descr_wrapper_inner}>
@@ -57,5 +69,3 @@ let Users: React.FC<UsersType> = (props) => {
   </div>
   )
 }
-
-export default Users;

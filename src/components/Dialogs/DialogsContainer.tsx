@@ -4,13 +4,13 @@ import { Dispatch } from 'redux';
 import { DialogsPageType } from '../../redux/dialogsReducer';
 import { StateType } from '../../redux/redux-store';
 import {Dialogs} from './Dialogs';
-import { MessageType } from './Message/Message';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 
 
 
 type MapStatePropsType = {
-  dialogsPage: string
+  dialogsPage: DialogsPageType
 }
 
 type MapDispatchToProps = {
@@ -20,7 +20,7 @@ export type DialogsPropsType = MapStatePropsType & MapDispatchToProps
 
 let mapStateToProps = (state: StateType): MapStatePropsType => {
   return {
-    dialogsPage: state.dialogsPage.newMessageBody
+    dialogsPage: state.dialogsPage
   }
 }
 
@@ -28,5 +28,8 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
   return {}
 }
 
-export const DialogsContainer = connect(mapStateToProps)(Dialogs)
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+
+export const DialogsContainer = connect(mapStateToProps)(AuthRedirectComponent)
 

@@ -15,7 +15,7 @@ let initialState: ProfilePageType = {
   profile: null
 }
 
-const profileReducer = (state = initialState, action: ProfileActionTypes) => {
+const profileReducer = (state = initialState, action: ProfileActionTypes): ProfilePageType => {
     let copyState;
 
     switch (action.type) {

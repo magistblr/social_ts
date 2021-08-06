@@ -1,8 +1,11 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import dialogsReducer, { DialogsActionTypes } from './dialogsReducer';
 import profileReducer, { addPostActionCreator, onPostChangeTextActionCreator } from './profileReducer';
 import sidebarReducer from './sidebarReducer';
 import friendsReducer from './friendsReducer';
+import {UsersActionTypes, usersReducer} from './usersReducer';
+import thunkMiddleware from "redux-thunk"
+import authReducer, { AuthActionTypes } from "./auth-redux";
 
 export type StoreType = {
   state: StateType
@@ -11,7 +14,7 @@ export type StoreType = {
 
 export type ProfileActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof onPostChangeTextActionCreator>
 
-export type ActionTypes =  ProfileActionTypes | DialogsActionTypes
+export type ActionTypes =  ProfileActionTypes | DialogsActionTypes | UsersActionTypes | AuthActionTypes
 
 
 export type ProfilePageType = {
@@ -54,9 +57,11 @@ export const rootReducer = combineReducers({
   dialogsPage: dialogsReducer,
   sidebarPage: sidebarReducer,
   friendsBar: friendsReducer,
+  usersPage: usersReducer,
+  auth: authReducer
 });
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 //@ts-ignore
 window.store = store;
