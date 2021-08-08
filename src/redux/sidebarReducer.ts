@@ -9,6 +9,7 @@ let initialState: SidebarPageType = {
   navbar: [
     {id: v1(), name: 'Profile', url: '/profile'},
     {id: v1(), name: 'Messages', url: '/messages'},
+    {id: v1(), name: 'Users', url: '/users'},
     {id: v1(), name: 'News', url: '/news'},
     {id: v1(), name: 'Music', url: '/music'},
     {id: v1(), name: 'Settings', url: '/settings'},

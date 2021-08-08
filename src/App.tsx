@@ -14,6 +14,7 @@ import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import { StateType } from './redux/redux-store';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
+import Login from './components/Login/Login';
 // import Login from './components/Login/Login';
 
 type AppType = {
@@ -36,12 +37,12 @@ const App: React.FC<AppType> = ({state}) => {
             path="/profile/:userId?"
             render={() => <Profile state={state} />}
           />
-          <Route path="/messages" render={ () => <DialogsContainer/>}/>
+          <Route path="/messages" render={ () => <DialogsContainer state={state}/>}/>
           <Route path="/users" render={ () => <UsersContainer state={state}/>}/>
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/settings" render={() => <Settings />} />
-          {/* <Route path="/login" render={ () => <Login/>}/> */}
+          <Route path="/login" render={ () => <Login/>}/>
         </div>
       </div>
     </div>

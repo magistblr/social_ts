@@ -14,6 +14,7 @@ export const userAPI = {
       .then(response => {
         return response.data;
       });
+      
   },
 
   follow(userId: number) {

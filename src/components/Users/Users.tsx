@@ -36,10 +36,10 @@ export const Users: React.FC<UsersType> = (props) => {
       })}
 
       </div>
-        {props.users.map( (u: any) => <div key={u.id}>
+        {props.users.map( (u) => <div key={u.id}>
         <div className={s.wrapper}>
           <div className={s.logo}>
-          <NavLink to={'/profile/' + u.id}> <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" /> </NavLink>
+          <NavLink to={'/profile/' + u.id}> <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" /></NavLink>
             <div className="users__btn">
               {u.followed
                 ? <button disabled={props.followingInProgress.some(id => id === u.id)}

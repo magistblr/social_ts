@@ -12,11 +12,15 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 export type UserType = {
   id: number
-  photoURL: string
+  photos: PhotosType
   followed: boolean
-  fullName: string
+  name: string
   status: string
-  location: UsersLocation
+}
+
+type PhotosType = {
+  small: null | string
+  large: null | string
 }
 
 export type UsersLocation = {
