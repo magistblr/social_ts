@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/social_ts/static/css/main.a76bac76.chunk.css",
+    "main.js": "/social_ts/static/js/main.94c086ce.chunk.js",
+    "main.js.map": "/social_ts/static/js/main.94c086ce.chunk.js.map",
+    "runtime-main.js": "/social_ts/static/js/runtime-main.a8d82986.js",
+    "runtime-main.js.map": "/social_ts/static/js/runtime-main.a8d82986.js.map",
+    "static/js/2.80ce7390.chunk.js": "/social_ts/static/js/2.80ce7390.chunk.js",
+    "static/js/2.80ce7390.chunk.js.map": "/social_ts/static/js/2.80ce7390.chunk.js.map",
+    "index.html": "/social_ts/index.html",
+    "static/css/main.a76bac76.chunk.css.map": "/social_ts/static/css/main.a76bac76.chunk.css.map",
+    "static/js/2.80ce7390.chunk.js.LICENSE.txt": "/social_ts/static/js/2.80ce7390.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/social_ts/static/media/ProximaNova-Regular.d97f8f32.eot",
+    "static/media/soc_logo.5829bfdb.png": "/social_ts/static/media/soc_logo.5829bfdb.png",
+    "static/media/users.dce446e0.png": "/social_ts/static/media/users.dce446e0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a8d82986.js",
+    "static/js/2.80ce7390.chunk.js",
+    "static/css/main.a76bac76.chunk.css",
+    "static/js/main.94c086ce.chunk.js"
+  ]
+}
