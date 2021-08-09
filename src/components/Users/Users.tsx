@@ -17,13 +17,12 @@ export type UsersType = {
 }
 
 export const Users: React.FC<UsersType> = (props) => {
-  // let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize); допилить вывод пользователей через кнопку ещё (сейчас ограничение страниц 25)
+  // let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize); //допилить вывод пользователей через кнопку ещё (сейчас ограничение страниц 25)
   let pages = [];
   for (let i=1; i <= 25; i++) {
     pages.push(i);
   }
-
-
+  console.log();
 
   return ( <div>
 
@@ -65,7 +64,7 @@ export const Users: React.FC<UsersType> = (props) => {
             </div>
           </div>
         </div>
-    </div>)}
+    </div>) }
   </div>
   )
 }

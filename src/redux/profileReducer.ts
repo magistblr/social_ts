@@ -1,10 +1,13 @@
 import { PostsType, ProfilePageType } from './redux-store';
 import { v1 } from 'uuid';
-import { ProfileActionTypes } from './redux-store';
+import { Dispatch } from 'redux';
+import { userAPI } from '../api/api';
 
 
 const ADD_POST = "ADD_POST";
 const ON_POST_CHANGE = "ON_POST_CHANGE";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+
 
 let initialState: ProfilePageType = {
   posts:  [
@@ -14,6 +17,13 @@ let initialState: ProfilePageType = {
   newPostText: '',
   profile: null
 }
+
+
+export type ProfileActionTypes =  ReturnType<typeof addPostActionCreator> |
+                                  ReturnType<typeof onPostChangeTextActionCreator> |
+                                  ReturnType<typeof setUserProfile>
+
+
 
 const profileReducer = (state = initialState, action: ProfileActionTypes): ProfilePageType => {
     let copyState;
@@ -31,6 +41,11 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
           newPostText: action.newText
         }
         return copyState;
+      case SET_USER_PROFILE: {
+        return {
+                ...state,
+                profile: action.profile}
+      }
       default:
         return state;
     }
@@ -38,6 +53,11 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
 
 export const addPostActionCreator = (text: string) => ({type: ADD_POST, newText: text} as const)
 export const onPostChangeTextActionCreator  = (text: string) => ({type: ON_POST_CHANGE, newText: text} as const)
-
+export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const)
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+  userAPI.getProfile(userId).then(response => {
+    dispatch(setUserProfile(response.data));
+  });
+}
 
 export default profileReducer;

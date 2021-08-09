@@ -29,6 +29,8 @@ export const Dialogs: React.FC<DialogsSetType> = ({state}) => {
 
   // if (!props.isAuth) return <Redirect to={"/login"} />
 
+  
+
   return (
     <div className={s.dialogs_wrapper}>
       <div className={s.items}>

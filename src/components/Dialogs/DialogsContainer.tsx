@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import { DialogsPageType } from '../../redux/dialogsReducer';
 import { StateType } from '../../redux/redux-store';
 import {Dialogs} from './Dialogs';
+import { MessageType } from './Message/Message';
 
 
 

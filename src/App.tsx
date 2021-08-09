@@ -15,7 +15,6 @@ import Header from './components/Header/Header';
 import { StateType } from './redux/redux-store';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
-// import Login from './components/Login/Login';
 
 type AppType = {
   state: StateType

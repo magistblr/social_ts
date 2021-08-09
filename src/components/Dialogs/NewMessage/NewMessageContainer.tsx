@@ -39,3 +39,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
 
 export const NewMessageContainer = connect(mapStateToProps, mapDispatchToProps)(NewMessage)
 
+

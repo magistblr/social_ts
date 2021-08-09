@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import dialogsReducer, { DialogsActionTypes } from './dialogsReducer';
-import profileReducer, { addPostActionCreator, onPostChangeTextActionCreator } from './profileReducer';
+import profileReducer, { addPostActionCreator, onPostChangeTextActionCreator, ProfileActionTypes } from './profileReducer';
 import sidebarReducer from './sidebarReducer';
 import friendsReducer from './friendsReducer';
 import {UsersActionTypes, usersReducer} from './usersReducer';
@@ -12,7 +12,7 @@ export type StoreType = {
   dispatch: (action: ActionTypes) => void
 }
 
-export type ProfileActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof onPostChangeTextActionCreator>
+
 
 export type ActionTypes =  ProfileActionTypes | DialogsActionTypes | UsersActionTypes | AuthActionTypes
 

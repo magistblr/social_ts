@@ -39,13 +39,16 @@ export type UsersPageType = {
 
 
 let initialState: UsersPageType = {
-  users: [],
+  users: [ ],
   pageSize: 5,
   totalUsersCount: 11,
   currentPage: 1,
   isFetching: true,
   followingInProgress: [],
 };
+
+console.log(initialState.users);
+
 
 export type UsersActionTypes =  ReturnType<typeof followSuccess> |
                                 ReturnType<typeof unfollowSuccess> |
@@ -108,7 +111,7 @@ export const followSuccess = (userId: number) => ({ type: FOLLOW, userId } as co
 export const unfollowSuccess = (userId: number) => ({ type: UNFOLLOW, userId } as const);
 export const setUsers = (users: UserType[]) => ({ type: SET_USERS, users } as const);
 export const setCurrentPages = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const);
-export const setUsersTotalCount = (totalUsersCount: any) => ({
+export const setUsersTotalCount = (totalUsersCount: number) => ({
   type: SET_TOTAL_USERS_COUNT,
   count: totalUsersCount,
 } as const);
