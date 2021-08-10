@@ -17,17 +17,6 @@ export type StoreType = {
 export type ActionTypes =  ProfileActionTypes | DialogsActionTypes | UsersActionTypes | AuthActionTypes
 
 
-export type ProfilePageType = {
-  posts: Array<PostsType>
-  newPostText: string
-  profile: null
-}
-
-export type PostsType = {
-  id: string
-  message: string
-}
-
 
 export type NavbarType = {
   id: string

@@ -1,8 +1,43 @@
-import { PostsType, ProfilePageType } from './redux-store';
 import { v1 } from 'uuid';
 import { Dispatch } from 'redux';
 import { userAPI } from '../api/api';
 
+export type ProfilePageType = {
+  posts: Array<PostsType>
+  newPostText: string
+  profile: ProfileType | null
+}
+
+export type PostsType = {
+  id: string
+  message: string
+}
+
+export type ProfileType = {
+  userId: number
+  lookingForAJob: boolean
+  lookingForAJobDescription: string
+  fullName: string
+  aboutMe: string
+  contacts: ContactsType
+  photos: PhotosType
+}
+
+type ContactsType = {
+  github: string
+  vk: string
+  facebook: string
+  instagram: string
+  twitter: string
+  website: string
+  youtube: string
+  mainLink: string
+}
+
+type PhotosType ={
+  small: string
+  large: string
+}
 
 const ADD_POST = "ADD_POST";
 const ON_POST_CHANGE = "ON_POST_CHANGE";
@@ -22,6 +57,8 @@ let initialState: ProfilePageType = {
 export type ProfileActionTypes =  ReturnType<typeof addPostActionCreator> |
                                   ReturnType<typeof onPostChangeTextActionCreator> |
                                   ReturnType<typeof setUserProfile>
+
+
 
 
 

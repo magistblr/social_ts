@@ -10,7 +10,7 @@ export type UsersType = {
   pageSize: number
   currentPage: number
   onPageChanged: (pageNumber: number) => void
-  users: UserType[]
+  users: any
   follow: (userId: number) => void
   unfollow: (userId: number) => void
   followingInProgress: number[]
@@ -22,7 +22,7 @@ export const Users: React.FC<UsersType> = (props) => {
   for (let i=1; i <= 25; i++) {
     pages.push(i);
   }
-  console.log();
+  // console.log(props.users);
 
   return ( <div>
 
@@ -35,7 +35,7 @@ export const Users: React.FC<UsersType> = (props) => {
       })}
 
       </div>
-        {props.users.map( (u) => <div key={u.id}>
+        {props.users.map( (u:any) => <div key={u.id}>
         <div className={s.wrapper}>
           <div className={s.logo}>
           <NavLink to={'/profile/' + u.id}> <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" /></NavLink>

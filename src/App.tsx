@@ -7,8 +7,8 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 // import SidebarContainer from './components/Sidebar/SidebarContainer';
 import UsersContainer from './components/Users/UsersContainer';
-// import ProfileContainer from './components/Profile/ProfileContainer';
-// import HeaderContainer from './components/Header/HeaderContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
@@ -29,12 +29,12 @@ const App: React.FC<AppType> = ({state}) => {
   return (
     <div className="app-wrapper">
       <div className="app-wrapper-inner">
-        <Header />
+        <HeaderContainer state={state.auth}/>
         <Sidebar friends={friends} navbar={navbar} />
         <div className="content-wrapper">
           <Route
             path="/profile/:userId?"
-            render={() => <Profile state={state} />}
+            render={() => <ProfileContainer profilePage={state.profilePage}/>}
           />
           <Route path="/messages" render={ () => <DialogsContainer state={state}/>}/>
           <Route path="/users" render={ () => <UsersContainer state={state}/>}/>

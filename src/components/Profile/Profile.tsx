@@ -3,14 +3,14 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import s from './Profile.module.css';
 import { MyPostsContainer } from '../Profile/MyPosts/MyPostsContainer';
-import { StateType } from '../../redux/redux-store';
+import { ProfilePageType } from '../../redux/profileReducer';
 
 export type ProfileType = {
-  state: StateType;
+  profilePage: ProfilePageType;
 };
 
 const Profile: React.FC<ProfileType> = (props) => {
-  const profile = props.state.profilePage.profile;
+  const profile = props.profilePage.profile;
 
 
   return (
@@ -24,7 +24,7 @@ const Profile: React.FC<ProfileType> = (props) => {
       </header>
 
       <div className={s.content}>
-        <ProfileInfo profile={profile} />
+        <ProfileInfo profile={profile}/>
 
         <MyPostsContainer/>
       </div>

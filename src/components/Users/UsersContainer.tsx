@@ -18,11 +18,11 @@ class UsersContainer extends React.Component<UsersContainerType> {
   componentDidMount() {
     this.props.getUsers(this.props.state.usersPage.currentPage, this.props.state.usersPage.pageSize);
     }
-    
+
   onPageChanged = (pageNumber: number) => {
     this.props.getUsers(pageNumber, this.props.state.usersPage.pageSize);
   }
-  
+
   render() {
 
       return (<>
@@ -45,7 +45,6 @@ class UsersContainer extends React.Component<UsersContainerType> {
 type MapStatePropsType = {
   usersPage: UsersPageType
 }
-
 
 
 let mapStateToProps = (state: StateType) => {

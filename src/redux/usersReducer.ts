@@ -29,7 +29,7 @@ export type UsersLocation = {
 }
 
 export type UsersPageType = {
-  users: UserType[]
+  users: any
   pageSize: number,
   totalUsersCount: number,
   currentPage: number
@@ -37,9 +37,16 @@ export type UsersPageType = {
   followingInProgress: number[]
 }
 
+export type UsersActionTypes =  ReturnType<typeof followSuccess> |
+                                ReturnType<typeof unfollowSuccess> |
+                                ReturnType<typeof setUsers> |
+                                ReturnType<typeof setCurrentPages> |
+                                ReturnType<typeof setUsersTotalCount> |
+                                ReturnType<typeof toggleIsFetching> |
+                                ReturnType<typeof toggleFollowingProgress>
 
 let initialState: UsersPageType = {
-  users: [ ],
+  users: [],
   pageSize: 5,
   totalUsersCount: 11,
   currentPage: 1,
@@ -50,13 +57,6 @@ let initialState: UsersPageType = {
 console.log(initialState.users);
 
 
-export type UsersActionTypes =  ReturnType<typeof followSuccess> |
-                                ReturnType<typeof unfollowSuccess> |
-                                ReturnType<typeof setUsers> |
-                                ReturnType<typeof setCurrentPages> |
-                                ReturnType<typeof setUsersTotalCount> |
-                                ReturnType<typeof toggleIsFetching> |
-                                ReturnType<typeof toggleFollowingProgress>
 
 
 
@@ -65,7 +65,7 @@ export const usersReducer = (state = initialState, action: UsersActionTypes): Us
     case FOLLOW:
       return {
         ...state,
-        users: state.users.map((u) => {
+        users: state.users.map((u:any) => {
           if (u.id === action.userId) {
             return { ...u, followed: true };
           }
@@ -75,7 +75,7 @@ export const usersReducer = (state = initialState, action: UsersActionTypes): Us
     case UNFOLLOW:
       return {
         ...state,
-        users: state.users.map((u) => {
+        users: state.users.map((u:any) => {
           if (u.id === action.userId) {
             return { ...u, followed: false };
           }
@@ -107,9 +107,11 @@ export const usersReducer = (state = initialState, action: UsersActionTypes): Us
   }
 };
 
+
+
 export const followSuccess = (userId: number) => ({ type: FOLLOW, userId } as const);
 export const unfollowSuccess = (userId: number) => ({ type: UNFOLLOW, userId } as const);
-export const setUsers = (users: UserType[]) => ({ type: SET_USERS, users } as const);
+export const setUsers = (users: any) => ({ type: SET_USERS, users } as const);
 export const setCurrentPages = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const);
 export const setUsersTotalCount = (totalUsersCount: number) => ({
   type: SET_TOTAL_USERS_COUNT,
