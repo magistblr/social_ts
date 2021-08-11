@@ -9,8 +9,9 @@ export type ProfileType = {
   profilePage: ProfilePageType;
 };
 
-const Profile: React.FC<ProfileType> = (props) => {
-  const profile = props.profilePage.profile;
+const Profile: React.FC<ProfileType> = ({profilePage}) => {
+  const profile = profilePage.profile;
+  const fullName = profilePage.profile?.fullName
 
 
   return (
@@ -24,7 +25,7 @@ const Profile: React.FC<ProfileType> = (props) => {
       </header>
 
       <div className={s.content}>
-        <ProfileInfo profile={profile}/>
+        <ProfileInfo profile={profile} fullName={fullName}/>
 
         <MyPostsContainer/>
       </div>

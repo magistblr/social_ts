@@ -37,7 +37,7 @@ const App: React.FC<AppType> = ({state}) => {
             render={() => <ProfileContainer profilePage={state.profilePage}/>}
           />
           <Route path="/messages" render={ () => <DialogsContainer state={state}/>}/>
-          <Route path="/users" render={ () => <UsersContainer state={state}/>}/>
+          <Route path="/users" render={ () => <UsersContainer />}/>
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/settings" render={() => <Settings />} />

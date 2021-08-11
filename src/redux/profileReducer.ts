@@ -13,15 +13,17 @@ export type PostsType = {
   message: string
 }
 
-export type ProfileType = {
-  userId: number
-  lookingForAJob: boolean
-  lookingForAJobDescription: string
-  fullName: string
-  aboutMe: string
-  contacts: ContactsType
-  photos: PhotosType
-}
+export type ProfileType = [
+  {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string | undefined
+    aboutMe: string
+    contacts: ContactsType
+    photos: PhotosType
+  }
+]
 
 type ContactsType = {
   github: string
@@ -50,7 +52,7 @@ let initialState: ProfilePageType = {
     {id: v1(), message: "It's my first post"}
   ],
   newPostText: '',
-  profile: null
+  profile: [ ]
 }
 
 

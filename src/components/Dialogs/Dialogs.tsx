@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Message, { MessageType } from "./Message/Message";
+import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import FriendMessage, { FriendMessageType } from "./Message/FriendMessage";
+import FriendMessage from "./Message/FriendMessage";
 import s from './Dialogs.module.css'
 
-// import { Redirect } from 'react-router-dom';
 import {StateType } from '../../redux/redux-store';
 import { NewMessageContainer } from './NewMessage/NewMessageContainer';
+import { Redirect } from 'react-router-dom';
 
 
 export type DialogsSetType = {
@@ -27,7 +27,7 @@ export const Dialogs: React.FC<DialogsSetType> = ({state}) => {
 
   let friendMessagesElements = state.dialogsPage.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
 
-  // if (!props.isAuth) return <Redirect to={"/login"} />
+  // if (!state.auth.isAuth) return <Redirect to={"/login"} />
 
   
 

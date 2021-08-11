@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UserType } from "../redux/usersReducer";
 
 const instance = axios.create({
   withCredentials: true,
@@ -8,17 +9,20 @@ const instance = axios.create({
   }
 })
 
-
+export type DataType = {
+  error: null
+  items: any
+  totalCount: number
+}
 
 
 export const userAPI = {
-  getUsers(currentPage = 1, pageSize = 10) {
-    return instance.get(`users?page=${currentPage}&count=${pageSize}`)       //запрос
+  getUsers(currentPage: number = 1, pageSize: number = 10) {
+    return instance.get<DataType>(`users?page=${currentPage}&count=${pageSize}`)       //запрос
       .then(response => {
         return response.data;
       });
   },
-
   follow(userId: number) {
     return instance.post(`follow/${userId}`)       //запрос
   },

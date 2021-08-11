@@ -4,23 +4,26 @@ import Spinner from '../../Spinner/Spinner';
 import s from './ProfileInfo.module.css'
 
 type ProfileInfoType = {
+  fullName: string | undefined
   profile: ProfileType | null
 }
 
 
-const ProfileInfo: React.FC<ProfileInfoType> = ({profile}) => {
+const ProfileInfo: React.FC<ProfileInfoType> = ({profile, fullName}) => {
 
+  console.log(profile);
 
-  if (!profile) {
+  if (profile === null) {
     return <Spinner/>
-  }
+  } else
 
+console.log(profile);
 
   return (
     <div className={s.user}>
     <img className={`${s.user} img`} src={ profile.photos.large} alt="avatar" />
     <div className="content__user-wrapper">
-      <div className={s.user_name}>{profile.fullName}</div>
+      <div className={s.user_name}>{fullName}</div>
       <div className="content__user-description">
         <ul className={s.user_description_list}>
           <li>info</li>

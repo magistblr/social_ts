@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import userPhoto from '../../assets/img/users.png'
-import { StateType } from '../../redux/redux-store';
 import { UserType } from '../../redux/usersReducer';
 import s from './Users.module.css'
 
@@ -10,7 +9,7 @@ export type UsersType = {
   pageSize: number
   currentPage: number
   onPageChanged: (pageNumber: number) => void
-  users: any
+  users: UserType[]
   follow: (userId: number) => void
   unfollow: (userId: number) => void
   followingInProgress: number[]
@@ -22,20 +21,19 @@ export const Users: React.FC<UsersType> = (props) => {
   for (let i=1; i <= 25; i++) {
     pages.push(i);
   }
-  // console.log(props.users);
 
   return ( <div>
 
-    <div className="users__pagination">
+    <div className={s.pagination}>
       {pages.map( p => {
-        return <div className="users__pagination-wrapper" onClick={() => {props.onPageChanged(p)}}>
-                    <span  className={props.currentPage === p ? "users__pagination-item_selected" : ""}
+        return <div className={s.pagination_wrapper} onClick={() => {props.onPageChanged(p)}}>
+                    <span  className={props.currentPage === p ? s.pagination_item_selected : ""}
                       >{p}</span>
               </div>
       })}
 
       </div>
-        {props.users.map( (u:any) => <div key={u.id}>
+        {props.users.map( (u) => <div key={u.id}>
         <div className={s.wrapper}>
           <div className={s.logo}>
           <NavLink to={'/profile/' + u.id}> <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" /></NavLink>

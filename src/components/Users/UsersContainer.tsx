@@ -1,40 +1,41 @@
 import React from 'react';
 import { connect} from "react-redux";
-import { follow, setCurrentPages, unfollow, toggleFollowingProgress, getUsers, UsersPageType } from '../../redux/usersReducer';
+import { follow, setCurrentPages, unfollow, toggleFollowingProgress, getUsers,  UserType } from '../../redux/usersReducer';
 import {Users} from './Users';
 import Spinner from '../Spinner/Spinner';
 import { StateType } from '../../redux/redux-store';
-
+import {RouteComponentProps, withRouter } from 'react-router-dom';
 
 type UsersContainerType = {
   getUsers: (currentPage: number, pageSize: number) => void
-  state: StateType
+  users: UserType[]
+  currentPage: number
+  pageSize: number
+  isFetching: boolean
+  totalUsersCount: number
+  followingInProgress: number[]
   follow: (userId: number) => void
   unfollow: (userId: number) => void
 }
 
-class UsersContainer extends React.Component<UsersContainerType> {
+type PropsType = RouteComponentProps & UsersContainerType
+
+
+class UsersContainer extends React.Component<PropsType> {
 
   componentDidMount() {
-    this.props.getUsers(this.props.state.usersPage.currentPage, this.props.state.usersPage.pageSize);
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
   onPageChanged = (pageNumber: number) => {
-    this.props.getUsers(pageNumber, this.props.state.usersPage.pageSize);
+    this.props.getUsers(pageNumber, this.props.pageSize);
   }
 
   render() {
 
       return (<>
-          {this.props.state.usersPage.isFetching ? <Spinner/> : null}
-          <Users  totalUsersCount={this.props.state.usersPage.totalUsersCount}
-                  pageSize={this.props.state.usersPage.pageSize}
-                  currentPage={this.props.state.usersPage.currentPage}
-                  onPageChanged={this.onPageChanged}
-                  users={this.props.state.usersPage.users}
-                  follow={this.props.follow}
-                  unfollow={this.props.unfollow}
-                  followingInProgress={this.props.state.usersPage.followingInProgress}
+          {this.props.isFetching ? <Spinner/> : null}
+          <Users  {...this.props} onPageChanged={this.onPageChanged}
           />
       </>
     )
@@ -43,11 +44,16 @@ class UsersContainer extends React.Component<UsersContainerType> {
 
 
 type MapStatePropsType = {
-  usersPage: UsersPageType
+  users: UserType[]
+  pageSize: number
+  totalUsersCount: number
+  currentPage: number
+  isFetching: boolean
+  followingInProgress: number[]
 }
 
 
-let mapStateToProps = (state: StateType) => {
+let mapStateToProps = (state: StateType): MapStatePropsType => {
   return {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
@@ -86,10 +92,13 @@ let mapStateToProps = (state: StateType) => {
 //ниже в коннекте сокращенный код, переданный вторым аргументом ввиде объекта (если значение == свойству follow: follow, то можно писать в одно слово)
 
 
+let WithUrlDataContainerComponent = withRouter(UsersContainer);
+
+
 export default connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPages,
     toggleFollowingProgress,
     getUsers
-  }) (UsersContainer);
+  }) (WithUrlDataContainerComponent);

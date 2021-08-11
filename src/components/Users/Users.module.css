@@ -92,10 +92,11 @@
 
 }
 
+.pagination_item_selected {
+  font-weight: bold;
+  color: green
+}
 .pagination span {
   cursor: pointer;
 }
 
-.pagination_item_selected {
-  font-weight: bold;
-}

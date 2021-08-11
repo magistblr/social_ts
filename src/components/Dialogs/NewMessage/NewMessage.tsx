@@ -1,10 +1,30 @@
+import axios from 'axios';
 import React, { ChangeEvent } from 'react'
+import { UserType } from '../../../redux/usersReducer';
 import s from './NewMessage.module.css'
 import { NewMessagePropsType } from './NewMessageContainer';
 
 
 
 const NewMessage: React.FC<NewMessagePropsType> = (props) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   let newMessageBody = props.dialogsPage.newMessageBody;
 
@@ -19,6 +39,14 @@ const NewMessage: React.FC<NewMessagePropsType> = (props) => {
     let text = e.currentTarget.value
     props.onNewMessageChange(text)
   }
+
+
+
+
+
+
+
+
 
 
   return (
