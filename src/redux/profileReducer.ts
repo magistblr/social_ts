@@ -1,6 +1,8 @@
 import { v1 } from 'uuid';
 import { Dispatch } from 'redux';
 import { userAPI } from '../api/api';
+import { ThunkAction } from 'redux-thunk';
+import { StateType } from './redux-store';
 
 export type ProfilePageType = {
   posts: Array<PostsType>
@@ -91,13 +93,16 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
 }
 export const addPostActionCreator = (text: string) => ({type: ADD_POST, newText: text} as const)
 export const onPostChangeTextActionCreator  = (text: string) => ({type: ON_POST_CHANGE, newText: text} as const)
-export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const)
+export const setUserProfile = (profile: ProfileType | null) => ({type: SET_USER_PROFILE, profile} as const)
 
 
+type ThunkType = ThunkAction<void, StateType, unknown, ProfileActionTypes>
 
 
-export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+export const getUserProfile = (userId: number) => (dispatch: Dispatch<ProfileActionTypes>): ThunkType => {
   userAPI.getProfile(userId).then(response => {
+    debugger
+    
     dispatch(setUserProfile(response.data));
   });
 }

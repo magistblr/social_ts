@@ -32,7 +32,7 @@ const App: React.FC<AppType> = ({state}) => {
         <div className="content-wrapper">
           <Route
             path="/profile/:userId?"
-            render={() => <ProfileContainer profilePage={state.profilePage}/>}
+            render={() => <ProfileContainer/>}
           />
           <Route path="/messages" render={ () => <DialogsContainer />}/>
           <Route path="/users" render={ () => <UsersContainer />}/>
