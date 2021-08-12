@@ -1,51 +1,26 @@
 import axios from 'axios';
 import React, { ChangeEvent } from 'react'
 import { UserType } from '../../../redux/usersReducer';
+import { DialogsPropsType } from '../DialogsContainer';
 import s from './NewMessage.module.css'
-import { NewMessagePropsType } from './NewMessageContainer';
 
 
 
-const NewMessage: React.FC<NewMessagePropsType> = (props) => {
+const NewMessage: React.FC<DialogsPropsType> = ({onSendMessageClick, onNewMessageChange, dialogsPage}) => {
+
+  let newMessageBody = dialogsPage.newMessageBody;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  let newMessageBody = props.dialogsPage.newMessageBody;
-
-
-  const onSendMessageClick = () => {
+  const onSendMessageClickC = () => {
     let text = newMessageBody
-    props.onSendMessageClick(text)
+    onSendMessageClick(text)
   };
 
 
-  const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const onNewMessageChangeC = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let text = e.currentTarget.value
-    props.onNewMessageChange(text)
+    onNewMessageChange(text)
   }
-
-
-
-
-
-
-
 
 
 
@@ -54,12 +29,12 @@ const NewMessage: React.FC<NewMessagePropsType> = (props) => {
             <div className={s.new_message}>
               <textarea className={`${s.new_message} textarea`}
               value={newMessageBody}
-              onChange={onNewMessageChange}
+              onChange={onNewMessageChangeC}
               placeholder="Enter your next"
               />
             </div>
             <div className={s.new_message_btn}>
-              <button onClick={onSendMessageClick} className={`${s.new_message_btn} button`}>Send</button>
+              <button onClick={onSendMessageClickC} className={`${s.new_message_btn} button`}>Send</button>
             </div>
           </div>
   )

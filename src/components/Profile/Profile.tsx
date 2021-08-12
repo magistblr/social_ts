@@ -10,10 +10,8 @@ export type ProfileType = {
 };
 
 const Profile: React.FC<ProfileType> = ({profilePage}) => {
-  const profile = profilePage.profile;
-  const fullName = profilePage.profile?.fullName
 
-
+debugger
   return (
     <div className={s.wrapper}>
       <header className="content__header">
@@ -25,7 +23,7 @@ const Profile: React.FC<ProfileType> = ({profilePage}) => {
       </header>
 
       <div className={s.content}>
-        <ProfileInfo profile={profile} fullName={fullName}/>
+        <ProfileInfo profilePage={profilePage}/>
 
         <MyPostsContainer/>
       </div>

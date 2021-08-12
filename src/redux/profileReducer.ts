@@ -13,7 +13,7 @@ export type PostsType = {
   message: string
 }
 
-export type ProfileType = [
+export type ProfileType =
   {
     userId: number
     lookingForAJob: boolean
@@ -23,7 +23,7 @@ export type ProfileType = [
     contacts: ContactsType
     photos: PhotosType
   }
-]
+
 
 type ContactsType = {
   github: string
@@ -52,7 +52,7 @@ let initialState: ProfilePageType = {
     {id: v1(), message: "It's my first post"}
   ],
   newPostText: '',
-  profile: [ ]
+  profile: null
 }
 
 
@@ -89,10 +89,13 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
         return state;
     }
 }
-
 export const addPostActionCreator = (text: string) => ({type: ADD_POST, newText: text} as const)
 export const onPostChangeTextActionCreator  = (text: string) => ({type: ON_POST_CHANGE, newText: text} as const)
 export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const)
+
+
+
+
 export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
   userAPI.getProfile(userId).then(response => {
     dispatch(setUserProfile(response.data));

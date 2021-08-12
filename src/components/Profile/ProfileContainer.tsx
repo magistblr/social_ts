@@ -27,7 +27,6 @@ type ParamsType = {
 
 type PropsType = RouteComponentProps<ParamsType> & ProfileContainerType
 
-
 class ProfileContainer extends React.Component<PropsType> {
 
   componentDidMount() {
@@ -40,7 +39,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
   render() {
         return (
-          <Profile {...this.props} profilePage={this.props.profilePage}/>
+          <Profile profilePage={this.props.profilePage}/>
       )
   }
 }

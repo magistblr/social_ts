@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { DialogsPageType } from '../../redux/dialogsReducer';
+import { DialogsPageType, sendMessageCreator, updateMessageCreator } from '../../redux/dialogsReducer';
 import { StateType } from '../../redux/redux-store';
 import {Dialogs} from './Dialogs';
-import { MessageType } from './Message/Message';
-
 
 
 
@@ -14,9 +12,12 @@ type MapStatePropsType = {
 }
 
 type MapDispatchToProps = {
+  onSendMessageClick: (body: string) => void
+  onNewMessageChange: (body: string) => void
 }
 
 export type DialogsPropsType = MapStatePropsType & MapDispatchToProps
+
 
 let mapStateToProps = (state: StateType): MapStatePropsType => {
   return {
@@ -24,11 +25,20 @@ let mapStateToProps = (state: StateType): MapStatePropsType => {
   }
 }
 
+
 let mapDispatchToProps = (dispatch: Dispatch) => {
-  return {}
+  return {
+    onSendMessageClick: (body: string) => {
+      dispatch( sendMessageCreator(body))
+      dispatch( updateMessageCreator("") )
+    },
+    onNewMessageChange: (body: string) => {
+      dispatch(updateMessageCreator(body))
+    }
+  }
 }
 
 
 
-export const DialogsContainer = connect(mapStateToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 

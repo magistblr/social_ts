@@ -132,17 +132,16 @@ export const getUsers = (currentPage: number, pageSize: number): ThunkType => {
     dispatch(toggleIsFetching(true));
 
     userAPI.getUsers(currentPage, pageSize).then((data: DataType) => {
-      dispatch(toggleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setUsersTotalCount(data.totalCount));
+      dispatch(toggleIsFetching(false));
     });
   };
 };
 
 export const follow = (userId: number): ThunkType => {
   return (dispatch: Dispatch<UsersActionTypes>) => {
-    toggleFollowingProgress(true, userId);
-
+    dispatch(toggleFollowingProgress(true, userId));
     userAPI.follow(userId)
     .then(response => {
       if (response.data.resultCode === 0) {
@@ -155,8 +154,7 @@ export const follow = (userId: number): ThunkType => {
 
 export const unfollow = (userId: number): ThunkType => {
   return (dispatch: Dispatch<UsersActionTypes>) => {
-    toggleFollowingProgress(true, userId);
-
+    dispatch(toggleFollowingProgress(true, userId));
     userAPI.unfollow(userId)
     .then(response => {
       if (response.data.resultCode === 0) {

@@ -6,30 +6,30 @@ import FriendMessage from "./Message/FriendMessage";
 import s from './Dialogs.module.css'
 
 import {StateType } from '../../redux/redux-store';
-import { NewMessageContainer } from './NewMessage/NewMessageContainer';
 import { Redirect } from 'react-router-dom';
+import NewMessage from './NewMessage/NewMessage';
+import { DialogsPropsType } from './DialogsContainer';
+import { DialogsPageType } from '../../redux/dialogsReducer';
 
 
 export type DialogsSetType = {
-  state: StateType
+  dialogsPage: DialogsPageType
 }
 
 
 
+export const Dialogs: React.FC<DialogsSetType> = ({...restProps}) => {
 
-export const Dialogs: React.FC<DialogsSetType> = ({state}) => {
+  let dialogsPage = restProps.dialogsPage
 
+  let dialogsElements = dialogsPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
 
+  let messagesElements = dialogsPage.messages.map( m => <Message message={m.message} id={m.id} key={m.id}/>);
 
-  let dialogsElements = state.dialogsPage.dialogs.map( d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
+  let friendMessagesElements = dialogsPage.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
 
-  let messagesElements = state.dialogsPage.messages.map( m => <Message message={m.message} id={m.id} key={m.id}/>);
+  // if (!isAuth) return <Redirect to={"/login"} />
 
-  let friendMessagesElements = state.dialogsPage.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
-
-  // if (!state.auth.isAuth) return <Redirect to={"/login"} />
-
-  
 
   return (
     <div className={s.dialogs_wrapper}>
@@ -40,7 +40,7 @@ export const Dialogs: React.FC<DialogsSetType> = ({state}) => {
       <div>
         {friendMessagesElements}
         {messagesElements}
-        <NewMessageContainer/>
+        <NewMessage {...restProps as DialogsPropsType}/>
       </div>
     </div>
   )

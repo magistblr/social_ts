@@ -8,6 +8,7 @@ export type MessageType = {
 
 const Message: React.FC<MessageType> = (props) => {
 
+console.log(props.message);
 
 
   return (

@@ -10,8 +10,6 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Sidebar from './components/Sidebar/Sidebar';
-import Profile from './components/Profile/Profile';
-import Header from './components/Header/Header';
 import { StateType } from './redux/redux-store';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
@@ -36,7 +34,7 @@ const App: React.FC<AppType> = ({state}) => {
             path="/profile/:userId?"
             render={() => <ProfileContainer profilePage={state.profilePage}/>}
           />
-          <Route path="/messages" render={ () => <DialogsContainer state={state}/>}/>
+          <Route path="/messages" render={ () => <DialogsContainer />}/>
           <Route path="/users" render={ () => <UsersContainer />}/>
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
