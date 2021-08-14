@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {setUserProfile, getUserProfile, ProfileType} from '../../redux/profileReducer'
+import {setUserProfile, getUserProfile, ProfileType, ProfilePageType} from '../../redux/profileReducer'
 
 import Profile from "./Profile";
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { StateType } from '../../redux/redux-store';
 
 type ProfileContainerType = {
-  
   getUserProfile: (userId: string) => void
   match: MatchType
+  profilePage: ProfilePageType
 }
 
 type MatchType = {
@@ -25,7 +25,7 @@ type ParamsType = {
 }
 
 
-type PropsType = RouteComponentProps<ParamsType> & ProfileContainerType
+type PropsType = RouteComponentProps<ParamsType> & ProfileContainerType | null
 
 class ProfileContainer extends React.Component<PropsType> {
 
@@ -50,12 +50,13 @@ class ProfileContainer extends React.Component<PropsType> {
 //   isAuth: state.auth.isAuth
 // });
 
+
 type MapStateToPropsType = {
-  profile: ProfileType | null
+  profilePage: ProfilePageType
 }
 
 let mapStateToProps = (state: StateType): MapStateToPropsType => ({
-  profile: state.profilePage.profile
+  profilePage: state.profilePage,
 });
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);

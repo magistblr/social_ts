@@ -3,15 +3,12 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import s from './Profile.module.css';
 import { MyPostsContainer } from '../Profile/MyPosts/MyPostsContainer';
-import { ProfilePageType } from '../../redux/profileReducer';
+import { ProfilePageType, ProfileType } from '../../redux/profileReducer';
 
-export type ProfileType = {
-  profilePage: ProfilePageType;
-};
 
-const Profile: React.FC<ProfileType> = ({profilePage}) => {
 
-debugger
+const Profile: React.FC<ProfilePageType> = (props) => {
+
   return (
     <div className={s.wrapper}>
       <header className="content__header">
@@ -23,7 +20,7 @@ debugger
       </header>
 
       <div className={s.content}>
-        <ProfileInfo profilePage={profilePage}/>
+        <ProfileInfo profilePage={props}/>
 
         <MyPostsContainer/>
       </div>
