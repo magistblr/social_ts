@@ -1,21 +1,25 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ProfilePageType, ProfileType } from '../../../redux/profileReducer';
 import Spinner from '../../Spinner/Spinner';
 import s from './ProfileInfo.module.css'
 
 
+type ProfileInfoPropsType = {
+  profile: ProfileType
+}
 
-const ProfileInfo: React.FC<ProfilePageType> = (props) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
 
-  let profile = props.profile
 
-  if (profile === null) {
-    return <Spinner/>
-  } else
+
+  // if (profile.userId === "0") {
+  //   return <Spinner/>
+  // } else
 
   return (
     <div className={s.user}>
-    <img className={`${s.user} img`} src={ profile.photos.large} alt="avatar" />
+    <img className={s.user_img} src={ profile.photos.large} alt="avatar" />
     <div className="content__user-wrapper">
       <div className={s.user_name}>{profile.fullName}</div>
       <div className="content__user-description">
@@ -23,7 +27,7 @@ const ProfileInfo: React.FC<ProfilePageType> = (props) => {
           <li>info</li>
           <li>About me: <span>{profile.aboutMe}</span></li>
           <li>Contacts:
-            <li>Facebook: <span>{profile.contacts.facebook}</span></li> */}
+            <li>Facebook: <span>{profile.contacts.facebook}</span></li>
             <li>Website: {profile.contacts.website}</li>
             <li>VK: {profile.contacts.vk}</li>
             <li>Twitter: {profile.contacts.twitter}</li>

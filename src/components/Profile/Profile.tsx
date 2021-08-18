@@ -4,10 +4,14 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import s from './Profile.module.css';
 import { MyPostsContainer } from '../Profile/MyPosts/MyPostsContainer';
 import { ProfilePageType, ProfileType } from '../../redux/profileReducer';
+import { useDispatch, useSelector } from 'react-redux';
 
+type ProfilePropsType = {
+  profile: ProfileType
+}
 
+const Profile: React.FC<ProfilePropsType> = ({profile}) => {
 
-const Profile: React.FC<ProfilePageType> = (props) => {
 
   return (
     <div className={s.wrapper}>
@@ -20,7 +24,7 @@ const Profile: React.FC<ProfilePageType> = (props) => {
       </header>
 
       <div className={s.content}>
-        <ProfileInfo profilePage={props}/>
+        <ProfileInfo profile={profile}/>
 
         <MyPostsContainer/>
       </div>

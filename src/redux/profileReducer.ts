@@ -7,7 +7,7 @@ import { StateType } from './redux-store';
 export type ProfilePageType = {
   posts: Array<PostsType>;
   newPostText: string;
-  profile: ProfileType | null;
+  profile: ProfileType
 };
 
 export type PostsType = {
@@ -16,10 +16,10 @@ export type PostsType = {
 };
 
 export type ProfileType = {
-  userId: number;
+  userId: string;
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
-  fullName: string | undefined;
+  fullName: string
   aboutMe: string;
   contacts: ContactsType;
   photos: PhotosType;
@@ -51,7 +51,27 @@ let initialState: ProfilePageType = {
     { id: v1(), message: "It's my first post" },
   ],
   newPostText: '',
-  profile: null,
+  profile: {
+    userId: "0",
+    lookingForAJob: true,
+    lookingForAJobDescription: "",
+    fullName: "",
+    aboutMe: "",
+    contacts: {
+      github: "",
+      vk: "",
+      facebook: "",
+      instagram: "",
+      twitter: "",
+      website: "",
+      youtube: "",
+      mainLink: "",
+    },
+    photos: {
+      small: "",
+      large: "",
+    }
+  }
 };
 
 export type ProfileActionTypes =
@@ -87,16 +107,15 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
 };
 export const addPostActionCreator = (text: string) => ({ type: ADD_POST, newText: text } as const);
 export const onPostChangeTextActionCreator = (text: string) => ({ type: ON_POST_CHANGE, newText: text } as const);
-export const setUserProfile = (profile: ProfileType | null) => ({ type: SET_USER_PROFILE, profile } as const);
+export const setUserProfile = (profile: ProfileType) => ({ type: SET_USER_PROFILE, profile } as const);
 
 type ThunkType = ThunkAction<void, StateType, unknown, ProfileActionTypes>;
 
-export const getUserProfile = (userId: number): ThunkType => {
+export const getUserProfile = (userId: string): ThunkType => {
   return (dispatch: Dispatch<ProfileActionTypes>) => {
     userAPI.getProfile(userId).then((response) => {
-      debugger;
-
       dispatch(setUserProfile(response.data));
+
     });
   };
 };

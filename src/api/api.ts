@@ -1,3 +1,4 @@
+import { Users, UsersType } from './../components/Users/Users';
 import axios from "axios";
 import { UserType } from "../redux/usersReducer";
 
@@ -11,7 +12,7 @@ const instance = axios.create({
 
 export type DataType = {
   error: null
-  items: any
+  items: UserType[]
   totalCount: number
 }
 
@@ -30,7 +31,7 @@ export const userAPI = {
   unfollow(userId: number) {
     return instance.delete(`follow/${userId}`)       //запрос
   },
-  getProfile(userId: number) {
+  getProfile(userId: string) {
     return instance.get(`profile/${userId}`)
   }
 }

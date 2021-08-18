@@ -1,3 +1,4 @@
+import { UsersType } from './../components/Users/Users';
 import { authAPI } from "../api/api";
 import { Dispatch } from "redux";
 
@@ -5,18 +6,18 @@ const SET_USER_DATA = 'SET_USER_DATA';
 
 
 export type AuthPropsType = {
-  users: any
-  email: string | null
-  login: string | null
+  users: UsersType[]
+  email: string
+  login: string
   isAuth: boolean
 }
 
 export type AuthActionTypes = ReturnType<typeof setAuthUserData>
 
 let initialState: AuthPropsType = {
-  users: null,
-  email: null,
-  login: null,
+  users: [],
+  email: "",
+  login: "",
   isAuth: false
 };
 

@@ -28,7 +28,6 @@ export const Dialogs: React.FC<DialogsSetType> = ({...restProps}) => {
 
   let friendMessagesElements = dialogsPage.friendMessages.map( f => <FriendMessage message={f.message} id={f.id} key={f.id}/>);
 
-  // if (!isAuth) return <Redirect to={"/login"} />
 
 
   return (
