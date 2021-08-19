@@ -1,36 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { AuthPropsType, setAuthUserData } from '../../redux/auth-redux';
+import { getAuthUserData, setAuthUserData } from '../../redux/auth-redux';
 import { StateType } from '../../redux/redux-store';
 import Header from './Header';
 
-type HeaderContainerType = {
+type MapStatePropsType = {
   isAuth: boolean
-  match: MatchType
 }
 
-type MatchType = {
-  isExact: boolean
-  path: string
-  url: string
-  // params: ParamsType
+type MapDispatchPropsType = {
+  getAuthUserData: () => void
 }
 
-// type ParamsType = {
-//   userId: string
-// }
 
 
-type PropsType = RouteComponentProps & HeaderContainerType
+type OwnPropsType = MapStatePropsType & MapDispatchPropsType
+type PropsType = RouteComponentProps & OwnPropsType
 
 
 
-const HeaderContainer: React.FC<PropsType> = ({isAuth}) => {
+const HeaderContainer: React.FC<PropsType> = ({isAuth, getAuthUserData}) => {
 
-  // componentDidMount() {
-  //   this.props.getAuthUserData();
-  // }
+  useEffect(() => {
+    getAuthUserData();
+  }, [])
 
 
     return ( <Header isAuth={isAuth}/>
@@ -50,4 +44,4 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => ({
 let WithUrlDataContainerComponent = withRouter(HeaderContainer)
 
 
-export default connect(mapStateToProps, {setAuthUserData}) (WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {setAuthUserData, getAuthUserData}) (WithUrlDataContainerComponent);

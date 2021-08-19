@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { AuthPropsType, setAuthUserData } from '../../redux/auth-redux';
+import { getAuthUserData, setAuthUserData } from '../../redux/auth-redux';
 import { FriendsType, NavbarType, StateType } from '../../redux/redux-store';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import Sidebar from './Sidebar';
 
 
-type SidebarContainerType = {
+type MapStatePropsType = {
   navbar: Array<NavbarType>
   friends: Array<FriendsType>
 }
 
-
-// type ParamsType = {
-//   userId: string
-// }
-
-type PropsType = RouteComponentProps & SidebarContainerType
+type MapDispatchPropsType = {
+  getAuthUserData: () => void
+}
 
 
-export const SidebarContainer: React.FC<PropsType> = ({navbar, friends}) => {
+type OwnPropsType = MapStatePropsType & MapDispatchPropsType
+type PropsType = RouteComponentProps & OwnPropsType
 
-  // componentDidMount() {
-  //   this.props.getAuthUserData();
-  // }
+
+export const SidebarContainer: React.FC<PropsType> = ({navbar, friends, getAuthUserData}) => {
+
+  useEffect(() => {
+    getAuthUserData();
+  }, [])
+
 
 
     return ( <Sidebar navbar={navbar} friends={friends}/>
@@ -44,7 +47,8 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
 }
 
 
-let WithUrlDataContainerComponent = withRouter(SidebarContainer)
+
+let withUrlDataContainerComponent = withRouter(SidebarContainer)
 
 
-export default connect(mapStateToProps, {setAuthUserData}) (WithUrlDataContainerComponent);
+export default connect(mapStateToProps,{setAuthUserData, getAuthUserData}) (withUrlDataContainerComponent);
