@@ -1,7 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ProfilePageType, ProfileType } from '../../../redux/profileReducer';
+import { ProfileType } from '../../../redux/profileReducer';
 import Spinner from '../../Spinner/Spinner';
+import ProfileStatus from './ProfileStatus';
+
 import s from './ProfileInfo.module.css'
 
 
@@ -13,15 +14,16 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
 
 
 
-  // if (profile.userId === "0") {
-  //   return <Spinner/>
-  // } else
+  if (profile.userId === "0") {
+    return <Spinner/>
+  } else
 
   return (
     <div className={s.user}>
     <img className={s.user_img} src={ profile.photos.large} alt="avatar" />
     <div className="content__user-wrapper">
       <div className={s.user_name}>{profile.fullName}</div>
+      <ProfileStatus />
       <div className="content__user-description">
         <ul className={s.user_description_list}>
           <li>info</li>
