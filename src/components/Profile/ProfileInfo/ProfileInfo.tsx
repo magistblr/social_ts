@@ -8,9 +8,11 @@ import s from './ProfileInfo.module.css'
 
 type ProfileInfoPropsType = {
   profile: ProfileType
+  status: string
+  updateUserStatus: (userId: string) => void
 }
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus}) => {
 
 
 
@@ -23,7 +25,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
     <img className={s.user_img} src={ profile.photos.large} alt="avatar" />
     <div className="content__user-wrapper">
       <div className={s.user_name}>{profile.fullName}</div>
-      <ProfileStatus />
+      <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
       <div className="content__user-description">
         <ul className={s.user_description_list}>
           <li>info</li>

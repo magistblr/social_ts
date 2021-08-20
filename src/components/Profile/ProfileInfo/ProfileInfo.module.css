@@ -17,4 +17,18 @@
   list-style-type: none;
 }
 
+.status_wrapper {
+  margin-left: 40px;
+  color: yellow;
+}
 
+.status_input {
+  width: 300px;
+}
+
+
+.status_span {
+  width: 300px;
+  height: 20px;
+  cursor: pointer;
+}

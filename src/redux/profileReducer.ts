@@ -1,6 +1,6 @@
 import { v1 } from 'uuid';
 import { Dispatch } from 'redux';
-import { userAPI } from '../api/api';
+import { profileAPI, userAPI } from '../api/api';
 import { ThunkAction } from 'redux-thunk';
 import { StateType } from './redux-store';
 
@@ -8,6 +8,7 @@ export type ProfilePageType = {
   posts: Array<PostsType>;
   newPostText: string;
   profile: ProfileType
+  status: string
 };
 
 export type PostsType = {
@@ -44,6 +45,7 @@ type PhotosType = {
 const ADD_POST = 'ADD_POST';
 const ON_POST_CHANGE = 'ON_POST_CHANGE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState: ProfilePageType = {
   posts: [
@@ -71,13 +73,15 @@ let initialState: ProfilePageType = {
       small: "",
       large: "",
     }
-  }
+  },
+  status: "",
 };
 
 export type ProfileActionTypes =
   | ReturnType<typeof addPostActionCreator>
   | ReturnType<typeof onPostChangeTextActionCreator>
-  | ReturnType<typeof setUserProfile>;
+  | ReturnType<typeof setUserProfile>
+  | ReturnType<typeof setStatus>
 
 const profileReducer = (state = initialState, action: ProfileActionTypes): ProfilePageType => {
   let copyState;
@@ -101,6 +105,12 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
         profile: action.profile,
       };
     }
+    case SET_STATUS: {
+      return {
+        ...state,
+        status: action.status,
+      };
+    }
     default:
       return state;
   }
@@ -108,6 +118,8 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
 export const addPostActionCreator = (text: string) => ({ type: ADD_POST, newText: text } as const);
 export const onPostChangeTextActionCreator = (text: string) => ({ type: ON_POST_CHANGE, newText: text } as const);
 export const setUserProfile = (profile: ProfileType) => ({ type: SET_USER_PROFILE, profile } as const);
+export const setStatus = (status: string) => ({ type: SET_STATUS, status } as const);
+export const updateStatus = (status: string) => ({ type: SET_STATUS, status } as const);
 
 type ThunkType = ThunkAction<void, StateType, unknown, ProfileActionTypes>;
 
@@ -116,6 +128,26 @@ export const getUserProfile = (userId: string): ThunkType => {
     userAPI.getProfile(userId).then((response) => {
       dispatch(setUserProfile(response.data));
 
+    });
+  };
+};
+
+export const getUserStatus = (status: string): ThunkType => {
+  return (dispatch: Dispatch<ProfileActionTypes>) => {
+    profileAPI.getStatus(status).then((response) => {
+      console.log(response.data);
+      
+      dispatch(setStatus(response.data));
+    });
+  };
+};
+
+export const updateUserStatus = (status: string): ThunkType => {
+  return (dispatch: Dispatch<ProfileActionTypes>) => {
+    profileAPI.updateStatus(status).then((response) => {
+      if(response.data.resultCode === 0){
+        dispatch(setStatus(status));
+      }
     });
   };
 };

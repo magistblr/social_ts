@@ -8,9 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 type ProfilePropsType = {
   profile: ProfileType
+  status: string
+  updateUserStatus: (userId: string) => void
 }
 
-const Profile: React.FC<ProfilePropsType> = ({profile}) => {
+const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus}) => {
 
 
   return (
@@ -24,7 +26,7 @@ const Profile: React.FC<ProfilePropsType> = ({profile}) => {
       </header>
 
       <div className={s.content}>
-        <ProfileInfo profile={profile}/>
+        <ProfileInfo profile={profile} status={status} updateUserStatus={updateUserStatus}/>
 
         <MyPostsContainer/>
       </div>
