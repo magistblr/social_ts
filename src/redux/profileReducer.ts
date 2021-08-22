@@ -74,7 +74,7 @@ let initialState: ProfilePageType = {
       large: "",
     }
   },
-  status: "",
+  status: "----------",
 };
 
 export type ProfileActionTypes =
