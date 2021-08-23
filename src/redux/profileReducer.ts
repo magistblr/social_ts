@@ -136,7 +136,6 @@ export const getUserStatus = (status: string): ThunkType => {
   return (dispatch: Dispatch<ProfileActionTypes>) => {
     profileAPI.getStatus(status).then((response) => {
       console.log(response.data);
-      
       dispatch(setStatus(response.data));
     });
   };

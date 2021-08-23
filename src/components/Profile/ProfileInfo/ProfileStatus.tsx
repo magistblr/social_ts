@@ -45,7 +45,7 @@ export default class ProfileStatus extends Component<ProfileStatusType> {
       <div className={s.status_wrapper}>
           {!this.state.editMode &&
             <div className={s.status_span}>
-              <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+              <span onDoubleClick={this.activateEditMode}>{this.props.status ? this.props.status : "-----------------"}</span>
             </div>
           }
           {this.state.editMode &&
