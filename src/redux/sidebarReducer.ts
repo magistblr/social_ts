@@ -13,6 +13,7 @@ let initialState: SidebarPageType = {
     {id: v1(), name: 'News', url: '/news'},
     {id: v1(), name: 'Music', url: '/music'},
     {id: v1(), name: 'Settings', url: '/settings'},
+    {id: v1(), name: 'Login', url: '/login'},
   ]
 }
 
