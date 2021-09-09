@@ -1,8 +1,7 @@
 import { Dispatch } from 'redux';
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { ThunkAction } from 'redux-thunk';
 import { DataType, userAPI } from './../api/api';
-import { DialogsActionTypes } from './dialogsReducer';
-import { ActionTypes, StateType } from './redux-store';
+import { StateType } from './redux-store';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';

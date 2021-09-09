@@ -10,22 +10,47 @@ const instance = axios.create({
   }
 })
 
+
+export enum ResultCodesEnum {
+  Success = 0,
+  Error = 1
+}
+
+type ResponseType<D ={}, RC = ResultCodesEnum> = {
+  data: D
+  message: string[]
+  resultCode: RC
+}
+
+type MeResponseDataType = {
+  id: string
+  email: string
+  login: string
+  isAuth: boolean
+}
+
+type LoginResponseDataType = {
+  userId: number
+}
+
 export type DataType = {
   error: null
   items: UserType[]
   totalCount: number
 }
+
 export type AuthDataType = {
-  data: DataGetType
+  data: MeResponseDataType
   resultCode: number
   messages: [] | string
 }
-
-export type DataGetType = {
-  id: string
+export type LoginType = {
   email: string
-  login: string
+  password: string
+  rememberMe: boolean
+  captcha?: boolean
 }
+
 
 
 export const userAPI = {
@@ -64,7 +89,15 @@ export const profileAPI = {
 
 export const authAPI = {
   me() {
-    return instance.get<AuthDataType>(`auth/me`)
+    return instance.get<ResponseType<MeResponseDataType>>(`auth/me`)
+  },
+  login(email: string, password: string, remember: boolean = false) {
+    return instance.post<ResponseType<MeResponseDataType>>(`auth/login`, {email, password, remember})
+    .then(res => res.data)
+  },
+  logout() {
+    return instance.delete<ResponseType<MeResponseDataType>>(`auth/login`)
+    .then(res => res.data)
   }
 }
 
