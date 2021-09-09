@@ -4,33 +4,40 @@ import s from './Login.module.css'
 import * as Yup from 'yup';
 import { login } from '../../redux/auth-redux';
 import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 
 type LoginType = {
   email: string
   password: string
   rememberMe: boolean
+  login: (email: string, password: string, remember: boolean)=> void
 }
 
+type PropsType = RouteComponentProps & LoginType
 
 
-export const Login = (props: any) => {
+export const Login: React.FC<PropsType> = ({login, ...props}) => {
   return (
     <div className={s.wrapper}>
       <div className={s.login}>
         <h1>Login</h1>
-        <LoginForm />
+        <LoginForm login={login} {...props}/>
       </div>
     </div>
   )
 }
 
-const LoginForm = (props: any) => {
+type LoginFormPropsType = {
+  login: (email: string, password: string, remember: boolean)=> void
+}
+
+const LoginForm: React.FC<LoginFormPropsType> = ({login}) => {
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
-      rememberMe: '',
+      rememberMe: "false",
     },
     validationSchema: Yup.object({
       email: Yup.string()
@@ -41,7 +48,7 @@ const LoginForm = (props: any) => {
         .required('Required'),
     }),
     onSubmit: values => {
-      props.login(values.email, values.password, values.rememberMe)
+      login(values.email, values.password, !values.rememberMe)
     },
   });
   return (
@@ -87,6 +94,7 @@ const LoginForm = (props: any) => {
   );
 };
 
+let WithUrlDataContainerComponent = withRouter(Login);
 
 
-export default connect (null, {login})(Login);
+export default connect (null, {login})(WithUrlDataContainerComponent);
