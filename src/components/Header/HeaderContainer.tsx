@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { getAuthUserData, setAuthUserData } from '../../redux/auth-redux';
+import { getAuthUserData, logout, setAuthUserData } from '../../redux/auth-redux';
 import { StateType } from '../../redux/redux-store';
 import Header from './Header';
 
@@ -11,6 +11,7 @@ type MapStatePropsType = {
 
 type MapDispatchPropsType = {
   getAuthUserData: () => void
+  logout: () => void
 }
 
 
@@ -20,14 +21,31 @@ type PropsType = RouteComponentProps & OwnPropsType
 
 
 
-const HeaderContainer: React.FC<PropsType> = ({isAuth, getAuthUserData}) => {
+const HeaderContainer: React.FC<PropsType> = ({isAuth, getAuthUserData, logout}) => {
+
+  const [state, setState] = useState(false)
+  console.log(state);
+  console.log("render isAuth", isAuth);
 
   useEffect(() => {
-    getAuthUserData();
+    if(!state){
+      getAuthUserData();
+    }
   }, [])
 
+  const onLogout = () => {
+    setState(!state)
+  }
 
-    return ( <Header isAuth={isAuth}/>
+  useEffect(() => {
+    if(isAuth){
+      logout();
+    }
+  }, [state])
+
+
+
+    return ( <Header isAuth={isAuth} onLogout={onLogout} state={state}/>
     );
 }
 
@@ -44,4 +62,4 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => ({
 let WithUrlDataContainerComponent = withRouter(HeaderContainer)
 
 
-export default connect(mapStateToProps, {setAuthUserData, getAuthUserData}) (WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {setAuthUserData, getAuthUserData, logout}) (WithUrlDataContainerComponent);

@@ -6,7 +6,7 @@ const instance = axios.create({
   withCredentials: true,
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',    //автоматом приклеивается к адресу в запросе(важно писать URL с большой буквы)
   headers: {
-    "API-KEY": "efc8efc6-9f92-405a-8cef-450d684727e8"
+    "API-KEY": "e7622b7e-10ee-4bb5-a04b-02e3e2e0b25a"
   }
 })
 
@@ -101,4 +101,3 @@ export const authAPI = {
   }
 }
 
-console.log();

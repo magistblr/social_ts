@@ -129,7 +129,6 @@ type ThunkType = ThunkAction<void, StateType, unknown, UsersActionTypes>
 export const getUsers = (currentPage: number, pageSize: number): ThunkType => {
   return (dispatch: Dispatch<UsersActionTypes>) => {
     dispatch(toggleIsFetching(true));
-
     userAPI.getUsers(currentPage, pageSize).then((data: DataType) => {
       dispatch(setUsers(data.items));
       dispatch(setUsersTotalCount(data.totalCount));

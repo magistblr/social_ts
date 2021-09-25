@@ -14,9 +14,6 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 const App = () => {
-
-
-
   return (
     <div className="app-wrapper">
       <div className="app-wrapper-inner">

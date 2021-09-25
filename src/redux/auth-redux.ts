@@ -1,5 +1,5 @@
 import { UsersType } from './../components/Users/Users';
-import { authAPI, AuthDataType, LoginType, ResultCodesEnum } from "../api/api";
+import { authAPI, ResultCodesEnum } from "../api/api";
 import { Dispatch } from "redux";
 import { ThunkAction } from 'redux-thunk';
 import { StateType } from './redux-store';
@@ -29,7 +29,6 @@ const authReducer = (state = initialState, action: AuthActionTypes): AuthPropsTy
       return {
         ...state,
         ...action.data,
-        isAuth: true
       }
     default:
       return state;
@@ -52,7 +51,7 @@ export const getAuthUserData = (): ThunkType => (dispatch: Dispatch<AuthActionTy
   });
 }
 
-export const login = (email: string, password: string, remember: boolean = false): ThunkType => (dispatch) => {
+export const login = (email: string, password: string, remember: boolean): ThunkType => (dispatch) => {
   authAPI.login(email, password, remember).then(response => {
     if (response.resultCode === ResultCodesEnum.Success) {
       dispatch(getAuthUserData());
