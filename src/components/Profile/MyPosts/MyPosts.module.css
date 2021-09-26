@@ -1,0 +1,51 @@
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.post {
+  font-size: 20px;
+}
+
+.new_post {
+  margin-top: 10px;
+}
+
+
+.new_post_textarea {
+  background-color: rgb(218, 219, 219);
+  font-size: 15px;
+  border: none;
+  width: 790px;
+  min-height: 50px;
+  outline: none;
+  resize: none;
+  padding: 10px;
+}
+
+.posts_btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn_button {
+  font-size: 20px;
+  color: white;
+  border:none;
+  background-color: rgb(60, 179, 36);
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn_button:hover {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.btn_button:active {
+  transform: scale(0.9)
+}

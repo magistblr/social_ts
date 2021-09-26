@@ -1,0 +1,34 @@
+.user {
+  display: flex;
+  margin-top: 15px;
+}
+
+.user_img {
+  width: 100px;
+  height: 100px;
+}
+
+.user_name {
+  margin-left: 40px;
+  font-size: 25px;
+}
+
+.user_description_list {
+  list-style-type: none;
+}
+
+.status_wrapper {
+  margin-left: 40px;
+  color: yellow;
+}
+
+.status_input {
+  width: 300px;
+}
+
+
+.status_span {
+  width: 300px;
+  height: 20px;
+  cursor: pointer;
+}
