@@ -75,7 +75,8 @@
 
 .pagination {
   display: flex;
-
+  justify-content: space-between;
+  width: 500px;
 }
 
 .pagination_wrapper {
@@ -86,17 +87,17 @@
   width: 25px;
   height: 25px;
   margin-left: 10px;
-  cursor: pointer;
   border: 1px solid black;
   border-radius: 100%;
 
 }
 
-.pagination_item_selected {
-  font-weight: bold;
-  color: green
-}
+
 .pagination span {
   cursor: pointer;
 }
 
+.pagination_wrapper_selected {
+  font-weight: bold;
+  color: rgb(251, 255, 0)
+}

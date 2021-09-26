@@ -33,10 +33,12 @@ class UsersContainer extends React.Component<PropsType> {
 
   render() {
 
-      return (<>
-          {this.props.isFetching ? <Spinner/> : null}
-          <Users  {...this.props} onPageChanged={this.onPageChanged}
-          />
+      return (
+      <>
+          {this.props.isFetching
+                                ? <Spinner/>
+                                : <Users  {...this.props} onPageChanged={this.onPageChanged}/>
+          }
       </>
     )
   }
@@ -50,6 +52,7 @@ type MapStatePropsType = {
   currentPage: number
   isFetching: boolean
   followingInProgress: number[]
+  isAuth: boolean
 }
 
 
@@ -60,7 +63,8 @@ let mapStateToProps = (state: StateType): MapStatePropsType => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress
+    followingInProgress: state.usersPage.followingInProgress,
+    isAuth: state.auth.isAuth,
   }
 }
 
@@ -100,5 +104,5 @@ export default connect(mapStateToProps, {
     unfollow,
     setCurrentPages,
     toggleFollowingProgress,
-    getUsers
+    getUsers,
   }) (WithUrlDataContainerComponent);
