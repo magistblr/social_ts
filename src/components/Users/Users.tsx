@@ -29,7 +29,6 @@ export const Users: React.FC<UsersType> = (props, {isAuth}) => {
   let leftPortionPageNumber = (portionNumber -1) * portionSize + 1;
   let rightPortionPageNumber = portionNumber * portionSize;
 
-  let auth = isAuth
 
   return (
     <div>

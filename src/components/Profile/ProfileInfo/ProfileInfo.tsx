@@ -2,6 +2,7 @@ import React from 'react';
 import { ProfileType } from '../../../redux/profileReducer';
 import Spinner from '../../Spinner/Spinner';
 import ProfileStatus from './ProfileStatus';
+import userPhoto from '../../../assets/img/users.png'
 
 import s from './ProfileInfo.module.css'
 
@@ -22,7 +23,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
 
   return (
     <div className={s.user}>
-    <img className={s.user_img} src={ profile.photos.large} alt="avatar" />
+    <img className={s.user_img} src={ profile.photos.large || userPhoto} alt="avatar" />
     <div className="content__user-wrapper">
       <div className={s.user_name}>{profile.fullName}</div>
       <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
