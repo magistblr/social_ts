@@ -16,6 +16,7 @@ type UsersContainerType = {
   followingInProgress: number[]
   follow: (userId: number) => void
   unfollow: (userId: number) => void
+  isAuth: boolean
 }
 
 type PropsType = RouteComponentProps & UsersContainerType

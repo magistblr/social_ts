@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import userPhoto from '../../assets/img/users.png'
 import { UserType } from '../../redux/usersReducer';
+import { Paginator } from '../Paginator/Paginator';
 import s from './Users.module.css'
 
 export type UsersType = {
@@ -13,44 +14,31 @@ export type UsersType = {
   follow: (userId: number) => void
   unfollow: (userId: number) => void
   followingInProgress: number[]
+  isAuth: boolean
 }
 
-export const Users: React.FC<UsersType> = (props, {isAuth}) => {
+export const Users = (props: UsersType) => {
   let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i=1; i <= pagesCount; i++) {
     pages.push(i);
   }
 
-  let portionSize = 10
-
-  let portionCount = Math.ceil(pagesCount / portionSize)
-  let [portionNumber, setPortionNumber] = useState(1);
-  let leftPortionPageNumber = (portionNumber -1) * portionSize + 1;
-  let rightPortionPageNumber = portionNumber * portionSize;
 
 
   return (
     <div>
-      <div className={s.pagination}>
-        {portionNumber > 1 && <button onClick={() => {setPortionNumber(portionNumber - 1)}}>PREV</button>}
-          {pages
-          .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-          .map( p => {
-            return (
-                    <div className={s.pagination_wrapper} onClick={() => {props.onPageChanged(p)}}>
-                          <span  className={props.currentPage === p ? s.pagination_wrapper_selected : ""}
-                            >{p}</span>
-                    </div>
-                  )
-          })}
-        {portionCount > portionNumber && <button onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>}
-      </div>
+      <Paginator  totalUsersCount={props.totalUsersCount}
+                  pageSize={props.pageSize}
+                  currentPage={props.currentPage}
+                  onPageChanged={props.onPageChanged}
+                  isAuth={props.isAuth}
+      />
         {props.users.map( (u) => <div key={u.id}>
         <div className={s.wrapper}>
           <div className={s.logo}>
           <NavLink to={'/profile/' + u.id}> <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" /></NavLink>
-            {isAuth &&
+            {props.isAuth &&
               <div className="users__btn">
               {u.followed
                 ? <button disabled={props.followingInProgress.some(id => id === u.id)}
