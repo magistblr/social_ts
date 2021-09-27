@@ -36,10 +36,7 @@ class UsersContainer extends React.Component<PropsType> {
 
       return (
       <>
-          {this.props.isFetching
-                                ? <Spinner/>
-                                : <Users  {...this.props} onPageChanged={this.onPageChanged}/>
-          }
+          <Users  {...this.props} onPageChanged={this.onPageChanged}/>
       </>
     )
   }

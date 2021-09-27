@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import userPhoto from '../../assets/img/users.png'
 import { UserType } from '../../redux/usersReducer';
 import { Paginator } from '../Paginator/Paginator';
+import Spinner from '../Spinner/Spinner';
 import s from './Users.module.css'
 
 export type UsersType = {
@@ -15,16 +16,10 @@ export type UsersType = {
   unfollow: (userId: number) => void
   followingInProgress: number[]
   isAuth: boolean
+  isFetching: boolean
 }
 
 export const Users = (props: UsersType) => {
-  let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize);
-  let pages = [];
-  for (let i=1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
-
 
   return (
     <div>
@@ -34,7 +29,9 @@ export const Users = (props: UsersType) => {
                   onPageChanged={props.onPageChanged}
                   isAuth={props.isAuth}
       />
-        {props.users.map( (u) => <div key={u.id}>
+      {props.isFetching
+      ? <Spinner/>
+      : props.users.map( (u) => <div key={u.id}>
         <div className={s.wrapper}>
           <div className={s.logo}>
           <NavLink to={'/profile/' + u.id}> <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar" /></NavLink>
@@ -64,8 +61,7 @@ export const Users = (props: UsersType) => {
             </div>
           </div>
         </div>
-    </div>)
-    }
+    </div>)}
   </div>
   )
 }
