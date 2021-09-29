@@ -1,6 +1,4 @@
-import axios from 'axios';
 import React, { ChangeEvent } from 'react'
-import { UserType } from '../../../redux/usersReducer';
 import { DialogsPropsType } from '../DialogsContainer';
 import s from './NewMessage.module.css'
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import './App.css';
+import s from './App.module.css';
 
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -15,21 +15,22 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App = () => {
   return (
-    <div className="app-wrapper">
-      <div className="app-wrapper-inner">
-        <HeaderContainer />
-        <SidebarContainer />
-        <div className="content-wrapper">
-          <Route
-            path="/profile/:userId?"
-            render={() => <ProfileContainer/>}
-          />
-          <Route path="/messages" render={ () => <DialogsContainer />}/>
-          <Route path="/users" render={ () => <UsersContainer />}/>
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/settings" render={() => <Settings />} />
-          <Route path="/login" render={ () => <Login/>}/>
+    <div className={s.app_wrapper}>
+      <div className={s.app_outer}>
+        <div className={s.app_inner}>
+            <HeaderContainer />
+          <div className={s.wrapper}>
+            <SidebarContainer />
+            <div className={s.content}>
+              <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+              <Route path="/messages" render={ () => <DialogsContainer />}/>
+              <Route path="/users" render={ () => <UsersContainer />}/>
+              <Route path="/news" render={() => <News />} />
+              <Route path="/music" render={() => <Music />} />
+              <Route path="/settings" render={() => <Settings />} />
+              <Route path="/login" render={ () => <Login/>}/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
