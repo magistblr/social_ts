@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import s from './Login.module.css'
 import { LoginForm } from './LoginForm';
-import { login} from '../../redux/auth-redux';
+import { login} from '../../redux/authReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
-import { StateType } from '../../redux/redux-store';
+import { StateType } from '../../redux/store';
 import { LoginType } from '../../api/api';
 
 

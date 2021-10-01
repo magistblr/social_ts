@@ -5,13 +5,14 @@ import {getUserProfile, ProfileType, getUserStatus, updateUserStatus} from '../.
 
 import Profile from "./Profile";
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { StateType } from '../../redux/redux-store';
+import { StateType } from '../../redux/store';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 type MapStatePropsType = {
   profile: ProfileType
   status: string
+  // autorisedtUserId: number
 }
 
 type ParamsType = {
@@ -32,14 +33,31 @@ type PropsType = RouteComponentProps<ParamsType> & OwnPropsType
 
 class ProfileContainer extends React.Component<PropsType> {
 
-      componentDidMount() {
+      refreshProfile() {
+        
         let userId = this.props.match.params.userId;
-        if (!userId) {
-          userId = "17731";
-        }
+        debugger
+        // if (!userId) {
+        //   userId = this.props.;
+        // }
+        // if (!userId) {
+        //   this.props.history.push("/login")
+        // }
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
+        // this.props
       }
+
+      componentDidMount() {
+        this.refreshProfile()
+      }
+
+      componentDidUpdate(prevProps: PropsType, prevState: PropsType, snapshot: PropsType) {
+        if(this.props.match.params.userId != prevProps.match.params.userId){
+          this.refreshProfile()
+        }
+      }
+
 
       render() {
             return (

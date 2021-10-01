@@ -5,7 +5,7 @@ import sidebarReducer from './sidebarReducer';
 import friendsReducer from './friendsReducer';
 import {UsersActionTypes, usersReducer} from './usersReducer';
 import thunkMiddleware from "redux-thunk"
-import authReducer, { AuthActionTypes } from "./auth-redux";
+import authReducer, { AuthActionTypes } from "./authReducer";
 
 export type StoreType = {
   state: StateType

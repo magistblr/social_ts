@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { getAuthUserData, logout, setAuthUserData } from '../../redux/auth-redux';
-import { StateType } from '../../redux/redux-store';
+import { getAuthUserData, logout, setAuthUserData } from '../../redux/authReducer';
+import { StateType } from '../../redux/store';
 import Header from './Header';
 
 type MapStatePropsType = {

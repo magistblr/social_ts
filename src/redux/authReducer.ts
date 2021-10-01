@@ -1,8 +1,8 @@
-import { UsersType } from './../components/Users/Users';
+import { UsersType } from '../components/Users/Users';
 import { authAPI, ResultCodesEnum } from "../api/api";
 import { Dispatch } from "redux";
 import { ThunkAction } from 'redux-thunk';
-import { StateType } from './redux-store';
+import { StateType } from './store';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -12,6 +12,7 @@ export type AuthPropsType = {
   email: string
   login: string
   isAuth: boolean
+  // userId: null | number
 }
 
 export type AuthActionTypes = ReturnType<typeof setAuthUserData>
@@ -20,7 +21,8 @@ let initialState: AuthPropsType = {
   users: [],
   email: "",
   login: "",
-  isAuth: false
+  isAuth: false,
+  // userId: null
 };
 
 const authReducer = (state = initialState, action: AuthActionTypes): AuthPropsType => {

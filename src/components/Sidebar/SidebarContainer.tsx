@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { getAuthUserData, setAuthUserData } from '../../redux/auth-redux';
-import { FriendsType, NavbarType, StateType } from '../../redux/redux-store';
+import { getAuthUserData, setAuthUserData } from '../../redux/authReducer';
+import { FriendsType, NavbarType, StateType } from '../../redux/store';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import Sidebar from './Sidebar';
 

@@ -2,7 +2,7 @@ import React, { ComponentType } from 'react'
 import { connect } from 'react-redux';
 import { compose, Dispatch } from 'redux';
 import { DialogsPageType, sendMessageCreator, updateMessageCreator } from '../../redux/dialogsReducer';
-import { StateType } from '../../redux/redux-store';
+import { StateType } from '../../redux/store';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import {Dialogs} from './Dialogs';
 

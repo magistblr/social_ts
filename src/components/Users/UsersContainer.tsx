@@ -3,7 +3,7 @@ import { connect} from "react-redux";
 import { follow, setCurrentPages, unfollow, toggleFollowingProgress, getUsers,  UserType } from '../../redux/usersReducer';
 import {Users} from './Users';
 import Spinner from '../Spinner/Spinner';
-import { StateType } from '../../redux/redux-store';
+import { StateType } from '../../redux/store';
 import {RouteComponentProps, withRouter } from 'react-router-dom';
 
 type UsersContainerType = {

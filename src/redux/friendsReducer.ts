@@ -1,5 +1,5 @@
 import { v1 } from 'uuid';
-import { ActionTypes, FriendsBarType } from './redux-store';
+import { ActionTypes, FriendsBarType } from './store';
 
 
 // const NEW_MESSAGE = "NEW_MESSAGE";

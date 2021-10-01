@@ -5,7 +5,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import FriendMessage from "./Message/FriendMessage";
 import s from './Dialogs.module.css'
 
-import {StateType } from '../../redux/redux-store';
+import {StateType } from '../../redux/store';
 import { Redirect } from 'react-router-dom';
 import NewMessage from './NewMessage/NewMessage';
 import { DialogsPropsType } from './DialogsContainer';

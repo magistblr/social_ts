@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { DataType, userAPI } from './../api/api';
-import { StateType } from './redux-store';
+import { StateType } from './store';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -99,7 +99,7 @@ export const usersReducer = (state = initialState, action: UsersActionTypes): Us
         followingInProgress: action.isFetching
           ? [...state.followingInProgress, action.userId]
           : state.followingInProgress.filter((id) => id !== action.userId),
-      }; //берем старый стейт и новый(склеиваем)
+      };
     }
     default:
       return state;
@@ -122,6 +122,13 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
   isFetching,
   userId,
 } as const);
+
+
+
+
+
+
+
 
 type ThunkType = ThunkAction<void, StateType, unknown, UsersActionTypes>
 

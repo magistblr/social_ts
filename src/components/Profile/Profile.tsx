@@ -18,11 +18,11 @@ const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus}
   return (
     <div className={s.wrapper}>
       <header className="content__header">
-        <img
+        {/* <img
           className={s.content_img}
           src="https://static9.depositphotos.com/1656823/1156/i/950/depositphotos_11563134-stock-photo-blue-water.jpg"
           alt="background"
-        />
+        /> */}
       </header>
 
       <div className={s.content}>

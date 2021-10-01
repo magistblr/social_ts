@@ -1,4 +1,4 @@
-import { ActionTypes, SidebarPageType} from './redux-store';
+import { ActionTypes, SidebarPageType} from './store';
 import { v1 } from 'uuid';
 
 

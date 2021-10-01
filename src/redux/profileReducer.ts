@@ -2,7 +2,7 @@ import { v1 } from 'uuid';
 import { Dispatch } from 'redux';
 import { profileAPI, userAPI } from '../api/api';
 import { ThunkAction } from 'redux-thunk';
-import { StateType } from './redux-store';
+import { StateType } from './store';
 
 export type ProfilePageType = {
   posts: Array<PostsType>;
