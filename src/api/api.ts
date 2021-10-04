@@ -1,12 +1,13 @@
 import { Users, UsersType } from './../components/Users/Users';
 import axios from "axios";
 import { UserType } from "../redux/usersReducer";
+import { PhotosType } from "../redux/profileReducer";
 
 const instance = axios.create({
   withCredentials: true,
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',    //автоматом приклеивается к адресу в запросе(важно писать URL с большой буквы)
   headers: {
-    "API-KEY": "e7622b7e-10ee-4bb5-a04b-02e3e2e0b25a"
+    "API-KEY": "aeb06e34-446c-4f5e-93a6-200f75eecee7"
   }
 })
 
@@ -29,9 +30,6 @@ type MeResponseDataType = {
   isAuth: boolean
 }
 
-type LoginResponseDataType = {
-  userId: number
-}
 
 export type DataType = {
   error: null
@@ -82,10 +80,17 @@ export const profileAPI = {
   },
   updateStatus(status: string){
     return instance.put(`profile/status`, {status: status})
+  },
+  savePhoto(photoFile: string){
+    const formData = new FormData();
+    formData.append("image", photoFile)
+    return instance.put(`profile/photo`, formData,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
   }
-
 }
-
 
 export const authAPI = {
   me() {

@@ -8,21 +8,19 @@ const SET_USER_DATA = 'SET_USER_DATA';
 
 
 export type AuthPropsType = {
-  users: UsersType[]
+  userId: string
   email: string
   login: string
   isAuth: boolean
-  // userId: null | number
 }
 
 export type AuthActionTypes = ReturnType<typeof setAuthUserData>
 
 let initialState: AuthPropsType = {
-  users: [],
   email: "",
   login: "",
   isAuth: false,
-  // userId: null
+  userId: ""
 };
 
 const authReducer = (state = initialState, action: AuthActionTypes): AuthPropsType => {

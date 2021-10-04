@@ -3,16 +3,17 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import s from './Profile.module.css';
 import { MyPostsContainer } from '../Profile/MyPosts/MyPostsContainer';
-import { ProfilePageType, ProfileType } from '../../redux/profileReducer';
-import { useDispatch, useSelector } from 'react-redux';
+import { ProfileType } from '../../redux/profileReducer';
 
 type ProfilePropsType = {
   profile: ProfileType
   status: string
   updateUserStatus: (userId: string) => void
+  isOwner: boolean
+  savePhoto: (photo: File) => void
 }
 
-const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus}) => {
+const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus, isOwner, savePhoto}) => {
 
 
   return (
@@ -26,7 +27,12 @@ const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus}
       </header>
 
       <div className={s.content}>
-        <ProfileInfo profile={profile} status={status} updateUserStatus={updateUserStatus}/>
+        <ProfileInfo  profile={profile}
+                      status={status}
+                      updateUserStatus={updateUserStatus}
+                      savePhoto={savePhoto}
+                      isOwner={isOwner}
+                      />
 
         <MyPostsContainer/>
       </div>

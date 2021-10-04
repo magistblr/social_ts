@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { profileAPI, userAPI } from '../api/api';
 import { ThunkAction } from 'redux-thunk';
 import { StateType } from './store';
+import { profile } from 'console';
 
 export type ProfilePageType = {
   posts: Array<PostsType>;
@@ -37,7 +38,7 @@ type ContactsType = {
   mainLink: string;
 };
 
-type PhotosType = {
+export type PhotosType = {
   small: string;
   large: string;
 };
@@ -46,6 +47,7 @@ const ADD_POST = 'ADD_POST';
 const ON_POST_CHANGE = 'ON_POST_CHANGE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const SET_PHOTO = 'SET_PHOTO';
 
 let initialState: ProfilePageType = {
   posts: [
@@ -54,7 +56,7 @@ let initialState: ProfilePageType = {
   ],
   newPostText: '',
   profile: {
-    userId: "0",
+    userId: "",
     lookingForAJob: true,
     lookingForAJobDescription: "",
     fullName: "",
@@ -82,6 +84,7 @@ export type ProfileActionTypes =
   | ReturnType<typeof onPostChangeTextActionCreator>
   | ReturnType<typeof setUserProfile>
   | ReturnType<typeof setStatus>
+  | ReturnType<typeof setSavePhoto>
 
 const profileReducer = (state = initialState, action: ProfileActionTypes): ProfilePageType => {
   let copyState;
@@ -111,6 +114,15 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
         status: action.status,
       };
     }
+    case SET_PHOTO: {
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          photos: action.photos
+        },
+      };
+    }
     default:
       return state;
   }
@@ -120,6 +132,7 @@ export const onPostChangeTextActionCreator = (text: string) => ({ type: ON_POST_
 export const setUserProfile = (profile: ProfileType) => ({ type: SET_USER_PROFILE, profile } as const);
 export const setStatus = (status: string) => ({ type: SET_STATUS, status } as const);
 export const updateStatus = (status: string) => ({ type: SET_STATUS, status } as const);
+export const setSavePhoto = (photos: PhotosType) => ({ type: SET_PHOTO, photos } as const);
 
 type ThunkType = ThunkAction<void, StateType, unknown, ProfileActionTypes>;
 
@@ -146,6 +159,16 @@ export const updateUserStatus = (status: string): ThunkType => {
     profileAPI.updateStatus(status).then((response) => {
       if(response.data.resultCode === 0){
         dispatch(setStatus(status));
+      }
+    });
+  };
+};
+
+export const savePhoto = (file: string): ThunkType => {
+  return (dispatch: Dispatch<ProfileActionTypes>) => {
+    profileAPI.savePhoto(file).then((response) => {
+      if(response.data.data.resultCode === 0){
+        dispatch(setSavePhoto(response.data.photos));
       }
     });
   };

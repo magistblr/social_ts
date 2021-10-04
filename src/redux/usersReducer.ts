@@ -49,7 +49,7 @@ export type UsersActionTypes =  ReturnType<typeof followSuccess> |
                                 ReturnType<typeof toggleFollowingProgress>
 
 let initialState: UsersPageType = {
-  users: [ ],
+  users: [],
   pageSize: 5,
   totalUsersCount: 11,
   currentPage: 1,
@@ -150,6 +150,7 @@ export const follow = (userId: number): ThunkType => {
     dispatch(toggleFollowingProgress(true, userId));
     userAPI.follow(userId)
     .then(response => {
+      console.log(response.data.resultCode);
       if (response.data.resultCode === 0) {
         dispatch(followSuccess(userId));
       }

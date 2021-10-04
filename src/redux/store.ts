@@ -6,6 +6,7 @@ import friendsReducer from './friendsReducer';
 import {UsersActionTypes, usersReducer} from './usersReducer';
 import thunkMiddleware from "redux-thunk"
 import authReducer, { AuthActionTypes } from "./authReducer";
+import appReducer from "./appReducer";
 
 export type StoreType = {
   state: StateType
@@ -47,7 +48,8 @@ export const rootReducer = combineReducers({
   sidebarPage: sidebarReducer,
   friendsBar: friendsReducer,
   usersPage: usersReducer,
-  auth: authReducer
+  auth: authReducer,
+  app: appReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

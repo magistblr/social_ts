@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { getAuthUserData, logout, setAuthUserData } from '../../redux/authReducer';
+import { compose } from 'redux';
+import { logout, setAuthUserData } from '../../redux/authReducer';
 import { StateType } from '../../redux/store';
 import Header from './Header';
 
@@ -10,7 +11,6 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-  getAuthUserData: () => void
   logout: () => void
 }
 
@@ -21,17 +21,12 @@ type PropsType = RouteComponentProps & OwnPropsType
 
 
 
-const HeaderContainer: React.FC<PropsType> = ({isAuth, getAuthUserData, logout}) => {
+const HeaderContainer: React.FC<PropsType> = ({isAuth, logout}) => {
 
   const [state, setState] = useState(false)
   console.log(state);
   console.log("render isAuth", isAuth);
 
-  useEffect(() => {
-    if(!state){
-      getAuthUserData();
-    }
-  }, [])
 
   const onLogout = () => {
     setState(!state)
@@ -59,7 +54,7 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => ({
   login: state.auth.login
 });
 
-let WithUrlDataContainerComponent = withRouter(HeaderContainer)
+let withRout = withRouter(HeaderContainer)
 
-
-export default connect(mapStateToProps, {setAuthUserData, getAuthUserData, logout}) (WithUrlDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, {setAuthUserData, logout})) (withRout);
