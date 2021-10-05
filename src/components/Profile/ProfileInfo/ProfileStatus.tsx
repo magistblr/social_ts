@@ -5,6 +5,7 @@ import s from './ProfileInfo.module.css'
 type ProfileStatusType ={
   status: string
   updateUserStatus: (userId: string) => void
+  isOwner: boolean
 }
 
 export default class ProfileStatus extends Component<ProfileStatusType> {

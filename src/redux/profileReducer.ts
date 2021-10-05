@@ -140,7 +140,6 @@ export const getUserProfile = (userId: string): ThunkType => {
   return (dispatch: Dispatch<ProfileActionTypes>) => {
     userAPI.getProfile(userId).then((response) => {
       dispatch(setUserProfile(response.data));
-
     });
   };
 };
@@ -159,6 +158,18 @@ export const updateUserStatus = (status: string): ThunkType => {
     profileAPI.updateStatus(status).then((response) => {
       if(response.data.resultCode === 0){
         dispatch(setStatus(status));
+      }
+    });
+  };
+};
+
+export const updateUserProfile = (profile: ProfileType): ThunkType => {
+  return (dispatch, getState) => {
+    const userId = getState().auth.userId
+    profileAPI.updateProfile(profile)
+    .then((response) => {
+      if(response.data.resultCode === 0){
+        dispatch(getUserProfile(userId));
       }
     });
   };
