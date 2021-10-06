@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import s from './Header.module.css'
 import logo from "../../assets/img/soc_logo.png";
 
@@ -17,8 +17,8 @@ const Header: React.FC<HeaderPropsType> = ({isAuth, onLogout}) => {
     <header className={s.header}>
       <img className={s.header_img} src={logo} alt="logo" />
       {!isAuth
-      ? <div className="header__login">
-        {isAuth ? 'Ok' : <NavLink to={'/login'}>Login</NavLink>}
+      ? <div className={s.header_login}>
+        {isAuth ? 'Ok' : <Link to={'/login'}>Login</Link>}
       </div>
       :
       <div className={s.button}>

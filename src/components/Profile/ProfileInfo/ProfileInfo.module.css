@@ -122,15 +122,34 @@
 }
 
 
+/* field */
+
 .field{
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
 }
 
+.field_job{
+  display: flex;
+  justify-content: start;
+  margin-top: 5px;
+}
+
+.field_job input{
+  all: revert;
+  width: 20px;
+  height: 20px;
+  margin-left: 12px;
+}
+
 .field_contacts{
   margin-top: 10px;
 }
+
+
+/* field */
+
 
 .save{
   display: flex;

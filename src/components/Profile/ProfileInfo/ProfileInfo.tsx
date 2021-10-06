@@ -126,14 +126,13 @@ const ProfileDataEditabled: React.FC<ProfileDataEditabled> = ({profile, updatePr
                   <input defaultValue={profile.contacts.github} {...register("contacts.github")} />
                 </li>
                 <li className={s.field_job}>Looking for a Job:
-                  <input type='checkbox' {...register("lookingForAJob")} />
+                  <input defaultChecked={profile.lookingForAJob} type='checkbox' {...register("lookingForAJob")}/>
                 </li>
                 <li className={s.field}>Job description:
                   <input defaultValue={profile.lookingForAJobDescription} {...register("lookingForAJobDescription")} />
                 </li>
               </li>
             </ul>
-            {/* {errors.exampleRequired && <span>This field is required</span>} */}
             <div className={s.save}><input type="submit" value={'save'}/></div>
       </form>
     )

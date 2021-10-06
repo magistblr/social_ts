@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import s from './Paginator.module.css'
 
 export type PaginatorType = {
@@ -18,34 +18,47 @@ export const Paginator = React.memo(function(props: PaginatorType) {
     pages.push(i);
   }
 
-  let portionSize = 10
+  let portionSize = 5
 
   let portionCount = Math.ceil(pagesCount / portionSize)
   let [portionNumber, setPortionNumber] = useState(1);
   let leftPortionPageNumber = (portionNumber -1) * portionSize + 1;
   let rightPortionPageNumber = portionNumber * portionSize;
 
-  // const onPageChanged = React.useCallback( () => {props.onPageChanged()}, [props.onPageChanged, p]);
 
-  const prev = "<<<"
-  const next = ">>>"
+  const prev = "<"
+  const next = ">"
+
+  const lastPages = pages[pages.length - 1]
+
 
   return (
     <div className={s.pagination_wrapper}>
-          {portionNumber > 1 ? <button onClick={() => {setPortionNumber(portionNumber - 1)}}>{prev}</button> : <div className={s.button_disable}></div>}
-          <div className={s.pagination}>
-          {pages
-            .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-            .map( p => {
-              return (
-                      <div className={s.pagination_item_wrapper} key={p} onClick={() => {props.onPageChanged(p)}}>
-                            <span  className={props.currentPage === p ? s.pagination_wrapper_selected : ""}
-                              >{p}</span>
-                      </div>
-                    )
-            })}
-          </div>
-          {portionCount > portionNumber ? <button onClick={() => {setPortionNumber(portionNumber + 1)}}>{next}</button> : <div className={s.button_disable}></div>}
+          {portionNumber > 1 ? <div className={s.arrow} onClick={() => {setPortionNumber(portionNumber - 1)}}>{prev}</div> : <div className={s.arrow_disable}></div>}
+            <div className={s.pagination}>
+              {pages
+                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map( p => {
+                  return (
+                          <div className={s.pagination_item_wrapper} key={p} onClick={() => {props.onPageChanged(p)}}>
+                                <span  className={props.currentPage === p ? s.pagination_wrapper_selected : ""}
+                                  >{p}</span>
+                          </div>
+                        )
+              })}
+              <div className={s.ellipsis}>...</div>
+              {pages
+              .filter( p => p === lastPages)
+              .map(p => {
+                return (
+                  <div className={s.pagination_item_wrapper} key={p} onClick={() => {props.onPageChanged(p)}}>
+                        <span  className={props.currentPage === p ? s.pagination_wrapper_selected : ""}
+                          >{p}</span>
+                  </div>
+                )
+              })}
+            </div>
+          {portionCount > portionNumber ? <div className={s.arrow} onClick={() => {setPortionNumber(portionNumber + 1)}}>{next}</div> : <div className={s.arrow_disable}></div>}
     </div>
   )
 })

@@ -55,8 +55,8 @@ export const Users = (props: UsersType) => {
                 <div className={s.descr_status}>{u.status}</div>
               </div>
               <div className={s.location}>
-                <div className={s.location_country}>{"u.location.country"},</div>
-                <div className={s.location_city}>{"u.location.city"}</div>
+                {/* <div className={s.location_country}>{"u.location.country"},</div>
+                <div className={s.location_city}>{"u.location.city"}</div> */}
               </div>
             </div>
           </div>

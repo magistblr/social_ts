@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0px 10px 0 10px;
+  transition: 0.2s;
 }
 
 .logo {
@@ -72,31 +73,3 @@
 }
 
 
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  width: 500px;
-}
-
-.pagination_wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color:rgb(109, 179, 109);
-  width: 25px;
-  height: 25px;
-  margin-left: 10px;
-  border: 1px solid black;
-  border-radius: 100%;
-
-}
-
-
-.pagination span {
-  cursor: pointer;
-}
-
-.pagination_wrapper_selected {
-  font-weight: bold;
-  color: rgb(251, 255, 0)
-}
