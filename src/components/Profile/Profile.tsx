@@ -36,7 +36,7 @@ const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus,
                       updateProfile={updateProfile}
                       />
 
-        <MyPostsContainer/>
+        {isOwner && <MyPostsContainer/>}
       </div>
     </div>
   );

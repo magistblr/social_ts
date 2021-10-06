@@ -24,13 +24,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
   return (
     <div className={s.posts}>
-      <div className={s.post}>My posts</div>
       <div className={s.new_post}>
         <textarea
           className={s.new_post_textarea}
           onChange={onPostChangeText}
           value={text}
-          placeholder="your news..."
+          placeholder="What is the news?"
         />
       </div>
       <div className={s.posts_btn}>

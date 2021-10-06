@@ -30,7 +30,9 @@ let mapStateToProps = (state: StateType): MapStatePropsType => {
 let mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onSendMessageClick: (body: string) => {
-      dispatch( sendMessageCreator(body))
+      if(body){
+        dispatch( sendMessageCreator(body))
+      }
       dispatch( updateMessageCreator("") )
     },
     onNewMessageChange: (body: string) => {

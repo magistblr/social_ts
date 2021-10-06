@@ -18,10 +18,20 @@ type ProfileInfoPropsType = {
   updateProfile: (profile: {}) => void
 }
 
+type ProfileDataType = {
+  profile: ProfileType
+  updateProfile: (profile: {}) => void
+}
+
+type ProfileDataEditabled = {
+  profile: ProfileType
+  updateProfile: (profile: {}) => void
+  onChangeEditForm: () => void
+}
+
 const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus, isOwner, savePhoto, updateProfile}) => {
 
   let [editForm, setEditForm] = useState(false);
-
 
   if (!profile) {
     return <Spinner/>
@@ -71,27 +81,15 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
 
 
 
-type ProfileDataType = {
-  profile: ProfileType
-  updateProfile: (profile: {}) => void
-}
-
-type ProfileDataEditabled = {
-  profile: ProfileType
-  updateProfile: (profile: {}) => void
-  onChangeEditForm: () => void
-}
 
 
 const ProfileDataEditabled: React.FC<ProfileDataEditabled> = ({profile, updateProfile, onChangeEditForm}) => {
-
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<ProfileType>();
   const onSubmit: SubmitHandler<ProfileType> = (data) => {
     updateProfile(data);
     onChangeEditForm()
   }
-
 
     return (
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
@@ -145,18 +143,18 @@ const ProfileDataEditabled: React.FC<ProfileDataEditabled> = ({profile, updatePr
 const ProfileData: React.FC<ProfileDataType> = ({profile}) => {
     return (
       <div className="content__user-description">
-        <ul className={s.user_description_list}>
-          <li>About me: <span>{profile.aboutMe}</span></li>
-          <li>Contacts:
-            <li>Facebook: <span>{profile.contacts.facebook}</span></li>
-            <li>Website: {profile.contacts.website}</li>
-            <li>VK: {profile.contacts.vk}</li>
-            <li>Twitter: {profile.contacts.twitter}</li>
-            <li>Instagram: {profile.contacts.instagram}</li>
-            <li>Youtube: {profile.contacts.youtube}</li>
-            <li>Looking for a Job: {profile.lookingForAJob ? 'Yes' : 'No'}</li>
-            <li>Github: {profile.contacts.github}</li>
-            <li>Job description: {profile.lookingForAJobDescription}</li>
+        <ul className={s.user_descr_lists}>
+          <li className={s.user_descr_list}>About me: <span>{profile.aboutMe}</span></li>
+          <li className={s.user_descr_list}>Contacts:
+            <li className={s.user_descr_list}>Facebook: <span>{profile.contacts.facebook}</span></li>
+            <li className={s.user_descr_list}>Website: {profile.contacts.website}</li>
+            <li className={s.user_descr_list}>VK: {profile.contacts.vk}</li>
+            <li className={s.user_descr_list}>Twitter: {profile.contacts.twitter}</li>
+            <li className={s.user_descr_list}>Instagram: {profile.contacts.instagram}</li>
+            <li className={s.user_descr_list}>Youtube: {profile.contacts.youtube}</li>
+            <li className={s.user_descr_list}>Looking for a Job: {profile.lookingForAJob ? 'Yes' : 'No'}</li>
+            <li className={s.user_descr_list}>Github: {profile.contacts.github}</li>
+            <li className={s.user_descr_list}>Job description: {profile.lookingForAJobDescription}</li>
           </li>
         </ul>
       </div>

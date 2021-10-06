@@ -2,6 +2,7 @@
 .posts {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
 
 .post {

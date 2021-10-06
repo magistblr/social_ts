@@ -12,10 +12,19 @@
   font-size: 25px;
 }
 
-.user_description_list li {
+.user_descr_lists{
+  margin-top: 15px;
+}
+
+.user_descr_list{
   margin-top: 5px;
   list-style-type: none;
 }
+
+.user_description_lists li{
+  list-style-type: none;
+}
+
 
 .status_wrapper {
   display: block;
@@ -92,6 +101,11 @@
   color: black;
   border-radius: 2px;
   border:rgb(231, 230, 230);
+  list-style-type: none;
+}
+
+.form li{
+  list-style-type: none;
 }
 
 .edit{
