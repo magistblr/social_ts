@@ -132,7 +132,7 @@
 
 .field_job{
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   margin-top: 5px;
 }
 

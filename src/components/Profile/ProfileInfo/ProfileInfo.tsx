@@ -23,7 +23,7 @@ type ProfileDataType = {
   updateProfile: (profile: {}) => void
 }
 
-type ProfileDataEditabled = {
+type TypeProfileDataEditabled = {
   profile: ProfileType
   updateProfile: (profile: {}) => void
   onChangeEditForm: () => void
@@ -83,9 +83,9 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
 
 
 
-const ProfileDataEditabled: React.FC<ProfileDataEditabled> = ({profile, updateProfile, onChangeEditForm}) => {
+const ProfileDataEditabled: React.FC<TypeProfileDataEditabled> = ({profile, updateProfile, onChangeEditForm}) => {
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<ProfileType>();
+  const { register, handleSubmit} = useForm<ProfileType>();
   const onSubmit: SubmitHandler<ProfileType> = (data) => {
     updateProfile(data);
     onChangeEditForm()

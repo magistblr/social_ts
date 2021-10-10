@@ -26,7 +26,7 @@ export const Login = () => {
 
   useEffect(() => {
     dispatch(login(state.email, state.password, state.rememberMe))
-  }, [state])
+  }, [state, dispatch])
 
 
 

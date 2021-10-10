@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import s from './ProfileInfo.module.css'
 
 

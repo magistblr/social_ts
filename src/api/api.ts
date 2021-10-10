@@ -1,7 +1,6 @@
-import { Users, UsersType } from './../components/Users/Users';
 import axios from "axios";
 import { UserType } from "../redux/usersReducer";
-import { PhotosType, ProfileType } from "../redux/profileReducer";
+import { ProfileType } from "../redux/profileReducer";
 
 const instance = axios.create({
   withCredentials: true,

@@ -3,7 +3,6 @@ import { Dispatch } from 'redux';
 import { profileAPI, userAPI } from '../api/api';
 import { ThunkAction } from 'redux-thunk';
 import { StateType } from './store';
-import { profile } from 'console';
 
 export type ProfilePageType = {
   posts: Array<PostsType>;

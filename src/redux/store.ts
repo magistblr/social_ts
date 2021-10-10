@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import dialogsReducer, { DialogsActionTypes } from './dialogsReducer';
-import profileReducer, { addPostActionCreator, onPostChangeTextActionCreator, ProfileActionTypes } from './profileReducer';
+import profileReducer, { ProfileActionTypes } from './profileReducer';
 import sidebarReducer from './sidebarReducer';
 import friendsReducer from './friendsReducer';
 import {UsersActionTypes, usersReducer} from './usersReducer';

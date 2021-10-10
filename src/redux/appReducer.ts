@@ -1,6 +1,3 @@
-import { UsersType } from '../components/Users/Users';
-import { authAPI, ResultCodesEnum } from "../api/api";
-import { Dispatch } from "redux";
 import { ThunkAction } from 'redux-thunk';
 import { StateType } from './store';
 import { getAuthUserData } from './authReducer';

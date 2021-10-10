@@ -1,5 +1,4 @@
-import { resolve } from 'path';
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom';
 import userPhoto from '../../assets/img/users.png'
 import { UserType } from '../../redux/usersReducer';
