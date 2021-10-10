@@ -12,9 +12,11 @@ type LoginFormPropsType = {
 export function LoginForm(props: LoginFormPropsType) {
   const { register, handleSubmit} = useForm();
 
-
+  
+  
   const onSubmit = (data: LoginType) => props.onSubmit(data);
-
+  
+  console.log(onSubmit);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

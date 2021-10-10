@@ -36,7 +36,7 @@ const HeaderContainer: React.FC<PropsType> = ({isAuth, logout}) => {
     if(isAuth){
       logout();
     }
-  }, [state, isAuth, logout])
+  }, [state])
 
 
 

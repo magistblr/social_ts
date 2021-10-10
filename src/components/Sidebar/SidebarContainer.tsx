@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { getAuthUserData, setAuthUserData } from '../../redux/authReducer';
@@ -22,9 +22,9 @@ type PropsType = RouteComponentProps & OwnPropsType
 
 export const SidebarContainer: React.FC<PropsType> = ({navbar, friends, getAuthUserData}) => {
 
-  // useEffect(() => {
-  //   getAuthUserData();
-  // }, [])
+  useEffect(() => {
+    getAuthUserData();
+  }, [getAuthUserData])
 
 
     return ( <Sidebar navbar={navbar} friends={friends}/>

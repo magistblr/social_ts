@@ -13,7 +13,7 @@
 }
 
 .user_descr_lists{
-  margin-top: 15px;
+  margin-top: 30px;
 }
 
 .user_descr_list{
@@ -94,6 +94,9 @@
   width: 350px;
 }
 
+.form{
+  margin-top: 40px;
+}
 
 .form input{
   all: unset;
