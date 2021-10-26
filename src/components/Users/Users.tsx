@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import userPhoto from '../../assets/img/users.png'
 import { UserType } from '../../redux/usersReducer';
 import { Paginator } from '../Paginator/Paginator';
 import UserSkeletone from './UserSkeletone/UserSkeletone';
 import s from './Users.module.css'
+import userPhoto from '../../assets/img/users.png'
 
 export type UsersType = {
   totalUsersCount: number

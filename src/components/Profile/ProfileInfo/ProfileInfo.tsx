@@ -73,7 +73,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
         {editForm
                 ? <ProfileDataEditabled profile={profile} updateProfile={updateProfile} onChangeEditForm={onChangeEditForm}/>
                 : <ProfileData  profile={profile} updateProfile={updateProfile}/>}
-        {isOwner && <div className={s.edit} onClick={onChangeEditForm}><img src={edit} alt="edit"/>Edit</div>}
+        {isOwner && <div className={s.edit} onClick={onChangeEditForm}><img src={edit} alt="edit"/>Edit profile</div>}
       </div>
     </div>
   )

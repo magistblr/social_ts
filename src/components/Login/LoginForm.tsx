@@ -1,33 +1,61 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
+import React, { useEffect } from 'react'
+import s from './LoginForm.module.css'
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginType } from '../../api/api';
+import { error, login } from '../../redux/authReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+import { StateType } from '../../redux/store';
 
-
-
-type LoginFormPropsType = {
-  onSubmit: (data: LoginType)=> void
+type Inputs = {
+  email: string
+  password: string
+  rememberMe: boolean
 }
 
+// const schema = yup.object().shape({
+//   email: yup.string().email(),
+//   password: yup.number().positive().integer().required(),
+//   rememberMe: yup.boolean().required(),
+// }).required();
 
-export function LoginForm(props: LoginFormPropsType) {
-  const { register, handleSubmit} = useForm();
+export const LoginForm = () => {
 
-  
-  
-  const onSubmit = (data: LoginType) => props.onSubmit(data);
-  
-  console.log(onSubmit);
+  const { register, handleSubmit, formState: {errors}, watch} = useForm<Inputs>();
+
+  const dispatch = useDispatch()
+  const errorAuth = useSelector<StateType, string>(state => state.auth.message)
+
+  const onSubmit: SubmitHandler<Inputs> = (data: LoginType) => dispatch(login(data.email, data.password, data.rememberMe));
+  const remember = watch('rememberMe')
+  console.log(errorAuth);
+  debugger
+
+  const onErrorHandler = () => {
+    debugger
+    error()
+  }
+
+  // useEffect(() => {
+    
+  // }, [])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("email")} />
+    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+      <input className={s.input} type={"email"} {...register("email", { required: true, maxLength: 20 })} placeholder={"email"}/>
+      {errors.email && <div className={s.required}>Required</div>}
       <div>&nbsp;</div>
-      <input {...register("password")} />
+      <input className={s.input} type={"password"} {...register("password", { required: true, minLength: 3 })}  placeholder={"password"}/>
+      {errors.password && <div className={s.required}>Required</div>}
       <div>&nbsp;</div>
-      <input {...register("rememberMe")} type={'checkbox'}/>
-      <span>remember me</span>
+      <div className={s.checkbox_wrapper}>
+        <input className={s.checkbox} {...register("rememberMe")} type={'checkbox'}/>
+        <span className={s.text}>remember me</span>
+      </div>
       <div>&nbsp;</div>
-      <input type="submit"/>
+      <input className={s.button} onClick={onErrorHandler} type="submit" value={"LOGIN"}/>
+      {errorAuth !== "" ? errorAuth : ""}
     </form>
   );
 }

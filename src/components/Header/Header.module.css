@@ -7,6 +7,7 @@
   height: 70px;
   margin-bottom: 10px;
   padding-right: 50px;
+  box-shadow: 0 0 5px 3px rgba(82, 132, 197, 0.726);
 }
 
 .header_img {

@@ -16,6 +16,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import {Login} from './components/Login/Login';
 import { initializedSuccess } from './redux/appReducer';
 import Spinner from './components/Spinner/Spinner';
+import {FriendsBar} from './components/FriendsBar/FriendsBar';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -60,6 +61,7 @@ class App extends React.Component<PropsType> {
                 <Route path="/settings" render={() => <Settings />} />
                 <Route path="/login" render={ () => <Login/>}/>
               </div>
+              <FriendsBar/>
             </div>
           </div>
         </div>

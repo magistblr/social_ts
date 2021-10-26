@@ -19,25 +19,6 @@ export type ActionTypes =  ProfileActionTypes | DialogsActionTypes | UsersAction
 
 
 
-export type NavbarType = {
-  id: string
-  name: string
-  url: string
-}
-
-
-export type FriendsType = {
-  id: string
-  name: string
-}
-
-export type FriendsBarType = {
-  friends: Array<FriendsType>
-}
-
-export type SidebarPageType = {
-  navbar: Array<NavbarType>
-}
 
 export type StateType = ReturnType<typeof rootReducer>
 

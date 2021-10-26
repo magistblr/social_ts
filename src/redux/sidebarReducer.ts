@@ -1,9 +1,18 @@
-import { ActionTypes, SidebarPageType} from './store';
+import { ActionTypes } from './store';
 import { v1 } from 'uuid';
 
 
-// const ADD_POST = "ADD_POST";
-// const ON_POST_CHANGE = "ON_POST_CHANGE";
+export type NavbarType = {
+  id: string
+  name: string
+  url: string
+}
+
+
+export type SidebarPageType = {
+  navbar: Array<NavbarType>
+}
+
 
 let initialState: SidebarPageType = {
   navbar: [

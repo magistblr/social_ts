@@ -1,6 +1,6 @@
 import axios from "axios";
 import { UserType } from "../redux/usersReducer";
-import { ProfileType } from "../redux/profileReducer";
+import { ProfileType } from './../redux/profileReducer';
 
 const instance = axios.create({
   withCredentials: true,
@@ -13,7 +13,8 @@ const instance = axios.create({
 
 export enum ResultCodesEnum {
   Success = 0,
-  Error = 1
+  Error = 1,
+  Captcha = 10
 }
 
 type ResponseType<D ={}, RC = ResultCodesEnum> = {
@@ -81,7 +82,6 @@ export const profileAPI = {
     return instance.put(`profile/status`, {status: status})
   },
   updateProfile(profile: ProfileType){
-    debugger
     return instance.put(`profile`, profile)
   },
   savePhoto(photoFile: string){
@@ -100,7 +100,6 @@ export const authAPI = {
     return instance.get<ResponseType<MeResponseDataType>>(`auth/me`)
   },
   login(email: string, password: string, remember: boolean = false) {
-    debugger
     return instance.post<ResponseType<MeResponseDataType>>(`auth/login`, {email, password, remember})
     .then(res => res.data)
   },

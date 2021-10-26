@@ -1,9 +1,19 @@
 import { v1 } from 'uuid';
-import { ActionTypes, FriendsBarType } from './store';
+import { ActionTypes } from './store';
 
 
 // const NEW_MESSAGE = "NEW_MESSAGE";
 // const SEND_MESSAGE = "SEND_MESSAGE";
+
+export type FriendsType = {
+  id: string
+  name: string
+}
+
+export type FriendsBarType = {
+  friends: Array<FriendsType>
+}
+
 
 let initialState: FriendsBarType = {
       friends: [
