@@ -19,7 +19,7 @@ export enum ResultCodesEnum {
 
 type ResponseType<D ={}, RC = ResultCodesEnum> = {
   data: D
-  message: string[]
+  messages: string[]
   resultCode: RC
 }
 
@@ -42,12 +42,18 @@ export type AuthDataType = {
   resultCode: number
   messages: [] | string
 }
+
+type Captcha = {
+  url: string
+}
+
 export type LoginType = {
   email: string
   password: string
   rememberMe: boolean
-  captcha?: boolean
+  captcha?: string
 }
+
 
 
 
@@ -99,13 +105,19 @@ export const authAPI = {
   me() {
     return instance.get<ResponseType<MeResponseDataType>>(`auth/me`)
   },
-  login(email: string, password: string, remember: boolean = false) {
-    return instance.post<ResponseType<MeResponseDataType>>(`auth/login`, {email, password, remember})
+  login(email: string, password: string, remember: boolean = false, captcha: string | undefined) {
+    return instance.post<ResponseType<MeResponseDataType>>(`auth/login`, {email, password, remember, captcha})
     .then(res => res.data)
   },
   logout() {
     return instance.delete<ResponseType<MeResponseDataType>>(`auth/login`)
     .then(res => res.data)
   }
+}
+
+export const securityAPI = {
+  captcha() {
+    return instance.get<Captcha>(`security/get-captcha-url`)
+  },
 }
 

@@ -1,24 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import s from './LoginForm.module.css'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginType } from '../../api/api';
-import { error, login } from '../../redux/authReducer';
+import { login } from '../../redux/authReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import { StateType } from '../../redux/store';
 
 type Inputs = {
   email: string
   password: string
   rememberMe: boolean
+  captcha: string
 }
 
-// const schema = yup.object().shape({
-//   email: yup.string().email(),
-//   password: yup.number().positive().integer().required(),
-//   rememberMe: yup.boolean().required(),
-// }).required();
 
 export const LoginForm = () => {
 
@@ -26,20 +20,10 @@ export const LoginForm = () => {
 
   const dispatch = useDispatch()
   const errorAuth = useSelector<StateType, string>(state => state.auth.message)
+  const captcha = useSelector<StateType, string | undefined>(state => state.auth.captcha)
+  console.log(captcha);
 
-  const onSubmit: SubmitHandler<Inputs> = (data: LoginType) => dispatch(login(data.email, data.password, data.rememberMe));
-  const remember = watch('rememberMe')
-  console.log(errorAuth);
-  debugger
-
-  const onErrorHandler = () => {
-    debugger
-    error()
-  }
-
-  // useEffect(() => {
-    
-  // }, [])
+  const onSubmit: SubmitHandler<Inputs> = (data: LoginType) => dispatch(login(data.email, data.password, data.rememberMe, data.captcha));
 
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
@@ -54,8 +38,16 @@ export const LoginForm = () => {
         <span className={s.text}>remember me</span>
       </div>
       <div>&nbsp;</div>
-      <input className={s.button} onClick={onErrorHandler} type="submit" value={"LOGIN"}/>
-      {errorAuth !== "" ? errorAuth : ""}
+      {captcha
+        &&
+        <div>
+          <div><img src={captcha} alt="captchaImage"/></div>
+          <input className={s.input_captcha} {...register("captcha")} type={'text'} placeholder={"captcha"}/>
+          <div>&nbsp;</div>
+        </div>
+      }
+      <input className={s.button} type="submit" value={"LOGIN"}/>
+      {errorAuth && <div className={s.errorMessage}>{errorAuth}</div>}
     </form>
   );
 }

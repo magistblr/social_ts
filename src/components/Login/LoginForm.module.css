@@ -17,10 +17,6 @@
 }
 
 
-/* .input_active{
-  border: 1px solid rgb(255, 0, 0);
-} */
-
 .checkbox_wrapper{
   display: flex;
   align-items: center;
@@ -62,4 +58,22 @@
 
 .input:hover, .button:hover, .checkbox:hover {
   box-shadow: 0 0 5px 2px rgb(161, 161, 161);
+}
+
+
+.errorMessage{
+  margin-top: 20px;
+  font-size: 18px;
+  color: red
+}
+
+.input_captcha{
+  width: 120px;
+  height: 20px;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.479);
+  margin-top: 10px;
 }
