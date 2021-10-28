@@ -20,8 +20,6 @@ export type UsersType = {
 }
 
 export const Users = (props: UsersType) => {
-  console.log(props.isFetching);
-  console.log(props.isAuth);
   
   return (
     <div>

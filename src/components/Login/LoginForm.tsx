@@ -13,11 +13,11 @@ type Inputs = {
   captcha: string
 }
 
-
 export const LoginForm = () => {
 
   const { register, handleSubmit, formState: {errors}, watch} = useForm<Inputs>();
-
+  
+  
   const dispatch = useDispatch()
   const errorAuth = useSelector<StateType, string>(state => state.auth.message)
   const captcha = useSelector<StateType, string | undefined>(state => state.auth.captcha)
