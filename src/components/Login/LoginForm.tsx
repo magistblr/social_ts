@@ -15,13 +15,12 @@ type Inputs = {
 
 export const LoginForm = () => {
 
-  const { register, handleSubmit, formState: {errors}, watch} = useForm<Inputs>();
+  const { register, handleSubmit, formState: {errors}} = useForm<Inputs>();
   
   
   const dispatch = useDispatch()
   const errorAuth = useSelector<StateType, string>(state => state.auth.message)
   const captcha = useSelector<StateType, string | undefined>(state => state.auth.captcha)
-  console.log(captcha);
 
   const onSubmit: SubmitHandler<Inputs> = (data: LoginType) => dispatch(login(data.email, data.password, data.rememberMe, data.captcha));
 

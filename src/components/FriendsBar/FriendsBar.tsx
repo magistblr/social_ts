@@ -1,10 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { FriendsType } from '../../redux/friendsReducer';
 import { StateType } from '../../redux/store';
 import { UserType } from '../../redux/usersReducer';
-import Friends from './Friends/Friends';
-import s from './FriendsBar.module.css'
 
 
 
