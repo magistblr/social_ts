@@ -24,8 +24,6 @@ type PropsType = RouteComponentProps & OwnPropsType
 const HeaderContainer: React.FC<PropsType> = ({isAuth, logout}) => {
 
   const [state, setState] = useState(false)
-  console.log(state);
-  console.log("render isAuth", isAuth);
 
 
   const onLogout = () => {
@@ -37,7 +35,6 @@ const HeaderContainer: React.FC<PropsType> = ({isAuth, logout}) => {
       logout();
     }
   }, [state])
-
 
 
     return ( <Header isAuth={isAuth} onLogout={onLogout} state={state}/>

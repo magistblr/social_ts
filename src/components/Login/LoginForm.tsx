@@ -16,8 +16,8 @@ type Inputs = {
 export const LoginForm = () => {
 
   const { register, handleSubmit, formState: {errors}} = useForm<Inputs>();
-  
-  
+
+
   const dispatch = useDispatch()
   const errorAuth = useSelector<StateType, string>(state => state.auth.message)
   const captcha = useSelector<StateType, string | undefined>(state => state.auth.captcha)
